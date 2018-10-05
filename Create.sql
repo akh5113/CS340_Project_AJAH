@@ -38,6 +38,7 @@ CREATE TABLE `events`(
 `name` varchar(100) NOT NULL,
 `goldWinner` int(11),
 `goldTime` TIME,
+`gender` tinyint(1) NOT NULL,
 `olympicID` int(11) NOT NULL,
 PRIMARY KEY(`id`)
 FOREIGN KEY (`olympicID`) REFERENCES `olympic_games` (`id`),
