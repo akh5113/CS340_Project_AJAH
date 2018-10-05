@@ -1,7 +1,9 @@
-/* CS340 Project Group 15
+/*
+CS340 Project Group 15
 Anne Harris
 Aaron Johnson
-Project Step 2*/
+Project Step 2
+*/
 
 --
 -- Table structure for table `olympic_games`
@@ -52,16 +54,26 @@ FOREIGN KEY (`goldWinner`) REFERENCES `athletes` (`id`)
 LOCK TABLES `events`;
 INSERT INTO `events` VALUES (1, '100 Meter Sprint', 1, '00:00:20', 2),
 
+-- 
+-- Table structure for table `athletes`
+--
 
+DROP TABLE IF EXISTS `athletes`;
 CREATE TABLE `athletes`(
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `firstName` varchar(50) NOT NULL,
 `lastName` varchar(50) NOT NULL,
-`team` int(11) NOT NULL,
+`teamID` int(11) NOT NULL,
 `gender` tinyint(1) NOT NULL,
-PRIMARY KEY(`id`)
+PRIMARY KEY(`id`),
+FOREIGN KEY(`teamID`) REFERENCES `teams`(`id`)
 )ENGINE=InnoDB;
 
+--
+-- Table structre for table `teams`
+--
+
+DROP TABLE IF EXISTS `teams`;
 CREATE TABLE `teams`(
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `name` varchar(100) NOT NULL,
@@ -70,5 +82,17 @@ CREATE TABLE `teams`(
 PRIMARY KEY(`id`)
 )ENGINE=InnoDB;
 
+--
+-- Table structure for many-to-many relationship
+-- Utalizes the id from the althletes table and the id from the events table
+-- 
 
+DROP TABLE IF EXISTS `has`;
+CREATE TABLE `has`(
+`athleteID` int(11) NOT NULL,
+`eventID` int(11) NOT NULL,
+PRIMARY KEY(`athleteID`, `eventID`),
+FOREIGN KEY(`athleteID`) REFERENCES `athletes`(`id`),
+FOREIGN KEY(`eventID`) REFERENCES `events`(`id`)
+)ENGINE=InnoDB;
 
