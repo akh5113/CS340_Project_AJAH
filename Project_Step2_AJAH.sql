@@ -3,16 +3,15 @@
 -- Aaron Johnson
 -- Project Step 2
 
-
---
--- Table structure for table `olympic_games`
---
-
 DROP TABLE IF EXISTS `has`;
 DROP TABLE IF EXISTS `events`;
 DROP TABLE IF EXISTS `athletes`;
 DROP TABLE IF EXISTS `teams`;
 DROP TABLE IF EXISTS `olympic_games`;
+
+--
+-- Table structure for table `olympic_games`
+--
 
 CREATE TABLE `olympic_games`(
 `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -46,8 +45,7 @@ CREATE TABLE `teams`(
 `goldMedals` int(11) DEFAULT '0',
 `olympicID` int(11) NOT NULL,
 PRIMARY KEY(`id`),
-KEY `olympicID`(`olympicID`),
-	CONSTRAINT `teams_ibfk_1` FOREIGN KEY (`olympicID`) 
+FOREIGN KEY (`olympicID`) 
 		REFERENCES `olympic_games`(`id`) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
@@ -73,8 +71,7 @@ CREATE TABLE `athletes`(
 `teamID` int(11) NOT NULL,
 `gender` tinyint(1) NOT NULL,
 PRIMARY KEY(`id`),
-KEY `teamID` (`teamID`),
-	CONSTRAINT `athletes_ibfk_1` FOREIGN KEY (`teamID`)
+FOREIGN KEY (`teamID`)
 		REFERENCES `teams`(`id`) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
@@ -104,11 +101,9 @@ CREATE TABLE `events`(
 `gender` tinyint(1) NOT NULL,
 `olympicID` int(11) NOT NULL,
 PRIMARY KEY(`id`),
-KEY `olympicID` (`olympicID`),
-KEY `goldWinner` (`goldWinner`),
-	CONSTRAINT `events_ibfk_1` FOREIGN KEY (`olympicID`)
+FOREIGN KEY (`olympicID`)
 		REFERENCES `olympic_games` (`id`) ON DELETE CASCADE,
-	CONSTRAINT `events_ibfk_2` FOREIGN KEY (`goldWinner`)
+FOREIGN KEY (`goldWinner`)
 		REFERENCES `athletes` (`id`) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
@@ -133,10 +128,9 @@ CREATE TABLE `has`(
 `athleteID` int(11) NOT NULL,
 `eventID` int(11) NOT NULL,
 PRIMARY KEY(`athleteID`, `eventID`),
-KEY `eventID` (`eventID`),
-CONSTRAINT `has_ibfk_1` FOREIGN KEY (`athleteID`)
+FOREIGN KEY (`athleteID`)
 	REFERENCES `athletes`(`id`) ON DELETE CASCADE,
-CONSTRAINT `has_ibfk_2` FOREIGN KEY (`eventID`)
+FOREIGN KEY (`eventID`)
 	REFERENCES `events`(`id`) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
