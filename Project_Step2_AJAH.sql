@@ -1,9 +1,8 @@
-/*
-CS340 Project Group 15
-Anne Harris
-Aaron Johnson
-Project Step 2
-*/
+-- CS340 Project Group 15
+-- Anne Harris
+-- Aaron Johnson
+-- Project Step 2
+
 
 --
 -- Table structure for table `olympic_games`
@@ -15,7 +14,7 @@ CREATE TABLE `olympic_games`(
 `games_year` int(4) NOT NULL,
 `season` tinyint(1) NOT NULL,
 `country` varchar(100) NOT NULL,
-`city` varchar(100)
+`city` varchar(100),
 PRIMARY KEY(`id`) 
 )ENGINE=InnoDB;
 
@@ -42,7 +41,7 @@ CREATE TABLE `events`(
 `goldTime` TIME,
 `gender` tinyint(1) NOT NULL,
 `olympicID` int(11) NOT NULL,
-PRIMARY KEY(`id`)
+PRIMARY KEY(`id`),
 FOREIGN KEY (`olympicID`) REFERENCES `olympic_games` (`id`),
 FOREIGN KEY (`goldWinner`) REFERENCES `athletes` (`id`)
 )ENGINE=InnoDB;
