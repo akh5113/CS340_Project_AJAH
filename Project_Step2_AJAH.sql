@@ -44,6 +44,7 @@ CREATE TABLE `teams`(
 `numAthletes` int(11) DEFAULT '1',
 `goldMedals` int(11) DEFAULT '0',
 `gamesID` int(11) NOT NULL,
+UNIQUE KEY `name` (`name`),
 PRIMARY KEY(`ID`),
 FOREIGN KEY (`gamesID`) 
 		REFERENCES `alien_games`(`ID`) ON DELETE CASCADE
