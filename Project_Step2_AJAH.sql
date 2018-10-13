@@ -3,7 +3,7 @@
 -- Aaron Johnson
 -- Project Step 2
 
-DROP TABLE IF EXISTS `has`;
+DROP TABLE IF EXISTS `athletes_events`;
 DROP TABLE IF EXISTS `events`;
 DROP TABLE IF EXISTS `athletes`;
 DROP TABLE IF EXISTS `teams`;
@@ -28,10 +28,10 @@ PRIMARY KEY(`ID`)
 --
 
 LOCK TABLES `alien_games` WRITE;
-INSERT INTO `alien_games` VALUES (1, 2018, 0, 'South Korea', 'PyeongChang'),
-								   (2, 2016, 1, 'Brazil', 'Reo de Janeiro'),
-								   (3, 2014, 0, 'Russia', 'Sochi'),
-								   (4, 2012, 1, 'United Kingdom', 'London');
+INSERT INTO `alien_games` VALUES (1, 2018, 0, 'Zorp', 'Zorp City'),
+								   (2, 2016, 1, 'Stogta', 'Stogta City'),
+								   (3, 2014, 0, 'Bealell', 'Bealell City'),
+								   (4, 2012, 1, 'Jaku', 'Jaku City');
 UNLOCK TABLES;
 
 --
@@ -54,10 +54,10 @@ FOREIGN KEY (`gamesID`)
 --
 
 LOCK TABLES `teams` WRITE;
-INSERT INTO `teams` VALUES (1, 'USA', 2, 1, 4),
-						   (2, 'France', 1, 1, 3),
-						   (3, 'Brazil', 2, 2, 2),
-						   (4, 'USA', 2, 1, 1);
+INSERT INTO `teams` VALUES (1, 'Geds', 2, 1, 4),
+						   (2, 'Purple People', 1, 1, 3),
+						   (3, 'Goblins', 2, 2, 2),
+						   (4, 'Koni', 2, 1, 1);
 UNLOCK TABLES;
 
 -- 
