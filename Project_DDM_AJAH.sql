@@ -1,27 +1,39 @@
 -- CS340 Project Group 15
 -- Anne Harris
 -- Aaron Johnson
--- Project Step 3 - Data Manipulation Queires
+-- Project Step 3 - Data Manipulation Queries
 
--- get all the year, season and host country of all Alien Games
-SELECT games_year, season, country FROM alien_games
+-- BELOW HERE ARE SQL QUERIES TO VIEW INFORMATION REGARDING THE ALIEN GAMES
 
--- get all althetes first and last name in team X
-SELECT firstName, lastName FROM athletes WHERE teamID = :team_id_selected_from_dropdown
+-- get Alien Games information to populate a dropdown
+-- For selecting the alien games the user is interested in viewing
+SELECT games_year AS Year, country, city, IF(season = 1, "Summer", "Winter") AS Season
+ FROM alien_games
 
--- get all athletes and their currently assoicated events
-SELECT athleteID, eventID, CONCAT(fname,' ',lname) AS athlete_name AS participating_event 
-FROM athletes 
-INNER JOIN athletes_events ON athletes.ID = athletes_events.athleteID 
-INNER JOIN events on events.ID = athletes_events.eventsID
-ORDER BY athlete_name, participating_event 
+-- Gets the team name, number of athletes, and gold medals won
+-- for an alien games previously selected by user
+SELECT name, numAthletes AS 'Number of Athletes', goldMedals AS 'Gold Medals Won'
+	FROM teams
+	WHERE gamesID = :gamesID_Selected_From_Dropdown
+	
+-- Gets the event names and their winners for a specific alien games
+-- that was previously selected by the user
+SELECT name AS 'Event Name', CONCAT(firstName, ' ', lastName) AS 'Winner'
+	FROM events
+		JOIN athletes ON events.ID=athletes.ID
+	WHERE gamesID = :gamesID_Selected_From_Dropdown
 
--- get Alien Games inforamtion to populate a dropdown
 
--- get all Events information to populate a dropdown
-SELECT events.ID AS eventsID, events.name FROM events -- not sure if this is correct 
+-- Gets all the athletes and the events they participated in. Also shows
+-- An X if they won gold in that event, and nothing if they did not
+SELECT CONCAT(firstName,' ', lastName) AS Athlete, events.name AS 'Competing Event',
+IF(athleteID=events.goldWinner, "X", " ") AS "Won Gold"
+	FROM athletes_events
+		JOIN athletes ON athletes_events.athleteID = athletes.ID
+		JOIN events ON athletes_events.eventID = events.ID
+	WHERE events.gamesID = :gamesID_Selected_From_Dropdown
 
--- get all Teams information to populate a dropdown
+
 
 -- add new Alien Games year, season, and country
 INSERT INTO alien_games (games_year, season, country) VALUES (:year_input, :season_bit_from_dropdown, :country_input)
