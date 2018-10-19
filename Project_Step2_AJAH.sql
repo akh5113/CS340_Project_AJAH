@@ -134,7 +134,7 @@ FOREIGN KEY (`eventID`)
 )ENGINE=InnoDB;
 
 --
--- Data for table `has`;
+-- Data for table `athletes_events`;
 --
 
 LOCK TABLES `athletes_events` WRITE;
