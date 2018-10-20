@@ -1,0 +1,47 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- Add Games Page -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Alien Games | Alien Games</title>
+</head>
+<body>
+	
+	<!-- Header -->
+	<h1 class="pageHeader">Add Alien Games Entry</h1>
+
+	<form id="add_games" action="/alien_games" method="post">
+
+		<label>Year:
+			<input type="text" name="games_year">
+		</label>
+		<br>
+
+		<label>Season:
+			<select name="season">
+				<option value="{{summer/winter bit value}}">{{summer/winter}}</option>
+			</select>
+		</label>
+		<br>
+
+		<label>Country:
+			<input type="text" name="country">
+		</label>
+		<br>
+
+		<label>City:
+			<input type="text" name="city">
+		</label>
+		<br>
+
+		<input type="submit" value="Submit">
+	</form>
+	
+</body>
+</html>

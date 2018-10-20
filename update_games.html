@@ -1,0 +1,49 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- Update Games Page -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update Alien Games | Alien Games</title>
+</head>
+<body>
+	
+	<!-- Header -->
+	<h1 class="pageHeader">Update Alien Games Entry</h1>
+	<h2>Update: {{year}} {{season}}</h2>
+
+	<form id="update_games" action="/alien_games" method="post">
+		<!-- have auto-populated with current information -->
+
+		<label>Year:
+			<input type="text" name="games_year" value="{{games_year}}">
+		</label>
+		<br>
+
+		<label>Season:
+			<select name="season">
+				<option value="{{summer/winter bit value}}">{{summer/winter}}</option>
+			</select>
+		</label>
+		<br>
+
+		<label>Country:
+			<input type="text" name="country" value="{{country}}">
+		</label>
+		<br>
+
+		<label>City:
+			<input type="text" name="city" value="{{city}}">
+		</label>
+		<br>
+
+		<input type="submit" value="Update">
+	</form>
+	
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- Edit Alien Games Homepage -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit | Alien Games</title>
+</head>
+<body>
+	
+	<!-- Header -->
+	<h1 class="pageHeader">Edit Information for the Alien Games</h1>
+
+	<!-- ADD -->
+	<!-- Buttons to link to page to add Games, Events, Athletes, Teams -->
+	<h3>Add Information</h3>
+	<!-- Add Alien Games -->
+	<form action="add_games.html">
+	    <input type="submit" value="Add Alien Game" />
+	</form>
+
+	<!-- Add Event -->
+	<form action="add_event.html">
+	    <input type="submit" value="Add Event" />
+	</form>
+
+	<!-- Add Team -->
+	<form action="add_team.html">
+	    <input type="submit" value="Add Team" />
+	</form>
+
+	<!-- Add Athlete -->
+	<form action="add_athlete.html">
+	    <input type="submit" value="Add Athelete" />
+	</form>
+
+	<!-- UPDATE OR DELETE -->
+	<!-- User will select either Games, Events, Atheltes or Teams and then
+		the results will be displayed and the user can select to Update or Delete -->
+	<h3>Update or Delete Information</h3>
+	<form id="update_delete" acition="/alien_games" method="get"> <!-- not sure what action to put here -->
+			Select: 
+			<select>
+				<option>Alien Games</option>
+				<!-- <option>Events</option> -->
+				<option>Teams</option>
+				<option>Athlete</option>
+			</select>
+			<input type="submit" value="Submit"></input>	
+	</form>
+
+	<!-- Display list of selected entity, buttons to update or delete -->
+	<!-- same queiries as shown in the view -->
+
+
+	 Alien Games
+	<h3 id="games_update_delete" class="queryHeader">Alien Games</h3>
+
+	<table id="games_update_delete_table">
+		<thead>
+			<tr>
+				<th>Year</th>
+				<th>Country</th>
+				<th>City</th>
+				<th>Season</th>
+			</tr>
+		</thead>
+		<tbody>
+			<td>{{year}}</td>
+			<td>{{country}}</td>
+			<td>{{city}}</td>
+			<td>{{season}}</td>
+			<!-- <td><button onclick="deleteGames({{games.id}})">Delete</button></td> -->
+			<td><a href="update_games.html">Update</a></td>
+		</tbody>
+	</table>
+
+
+
+	<!-- Events -->
+	<!--
+	<h3 id="events_update_delete" class="queryHeader">Events</h3>
+	Table to display results of Events query 
+	<table id="events_update_delete_table">
+		<thead>
+			<tr>
+				<th>Event Name</th>
+				<th>Gold Winner</th> id of athlete displayed as firstName lastName 
+			</tr>
+		</thead>
+		<tbody>
+			<td>{{event.name}}</td>
+			<td>{{goldWinner}}</td> id of athlete displayed as firstName lastName 
+			<td><button onclick="deleteEvent({{events.id}})">Delete</button></td>
+			<td><a href="update_event.html">Update</a></td>
+		</tbody>
+	</table>
+	-->
+
+	<!-- Teams -->
+	<h3 id="team_update_delete" class="queryHeader">Team</h3>
+
+	<table id="teams_update_delete_table">
+		<thead>
+			<tr>
+				<th>Team Name</th>
+				<th>Number of Athletes</th>
+				<th>Gold Medals Won</th>
+			</tr>
+		</thead>
+		<tbody>
+			<td>{{teams.name}}</td>
+			<td>{{numAthletes}}</td>
+			<td>{{goldMedals}}</td>
+		<!--	<td><button onclick="deleteTeam({{teams.id}})">Delete</button></td> -->
+			<td><a href="update_team.html">Update</a></td>
+		</tbody>
+	</table>
+
+
+	<!-- Athletes -->
+	<h3 id="athletes_update_delete" class="queryHeader">Athletes</h3>
+	<!-- table to display results of athletes query  -->
+	<table id="athletes_table">
+		<thead>
+			<tr>
+				<th>Event Name</th>
+				<th>Athlete Name</th>
+				<th>Gold Medal Winner</th>
+			</tr>
+		</thead>
+		<tbody>
+			<td>{{event.name}}</td>
+			<td>{{firstName}} {{lastName}}</td>
+			<td>{{goldWinner}}</td>
+			<td><button onclick="deleteAthlete({{athletes.id}})">Delete</button></td>
+			<td><a href="update_athlete.html">Update</a></td>
+		</tbody>
+	</table>
+
+
+</body>
+</html>
