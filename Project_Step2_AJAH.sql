@@ -42,7 +42,7 @@ CREATE TABLE `teams`(
 `ID` int(11) NOT NULL AUTO_INCREMENT,
 `name` varchar(100) NOT NULL,
 `numAthletes` int(11) DEFAULT '1',
-`goldMedals` int(11) DEFAULT '0',
+`goldMedals` int(11) DEFAULT 0,
 `gamesID` int(11) NOT NULL,
 UNIQUE KEY `name` (`name`),
 PRIMARY KEY(`ID`),

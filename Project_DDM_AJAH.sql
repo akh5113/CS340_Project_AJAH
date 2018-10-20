@@ -109,11 +109,32 @@ UPDATE athletes_events SET eventID = :eventID_input
 	WHERE ID = :athleteID_input
 
 -- BELOW HERE ARE TO DELETE ITEMS
-	
--- update an event with a gold winner
-UPDATE events SET goldWinner = :athlete_ID_dropdown_input WHERE id = :event_ID_from_input
 
--- delete an athlete
-DELETE FROM athletes WHERE id = :athlete_ID_selected_from_page
+-- Delete an entire Alien Game
+DELETE FROM alien_games WHERE ID = :alien_game_selected_from_dropdown
 
--- disassociate a an athlete from an event
+-- Delete an entire team
+DELETE FROM teams WHERE ID = :team_ID_from_dropdown
+
+-- Delete an athlete
+DELETE FROM athletes WHERE ID = :athlete_selected_from_list
+
+-- Delete an Event
+DELETE FROM events WHERE ID = :event_selected_from_list
+
+-- Cascading deletes in the SQL table will take care of disassociating events when an athlete or event are deleted
+-- So no deletes needed for athletes_events table. (If an event is deleted its automatically deleted in that table)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
