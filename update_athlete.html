@@ -1,0 +1,51 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- Update Athlete Page -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update Athlete | Alien Games</title>
+</head>
+<body>
+	
+	<!-- Header -->
+	<h1 class="pageHeader">Update Athlete</h1>
+	<h2>{{firstName}}{{lastName}}</h2>
+
+	<form id="update_event" action="/events" method="post">
+
+		<label>First Name:
+			<input type="text" name="firstName" value="{{firstName}}">
+		</label>
+		<br>
+
+		<label>Last Name:
+				<input type="text" name="lastName" value="{{lastName}}">
+		</label>
+		<br>
+
+		<label>Team:
+			<select name="teams.id">
+				<option value="{{teams.id}}">{{teams.name}}</option>
+			</select>
+		</label>
+		<br>
+
+<!--
+		<label>Events:
+			<select multiple name="alien_games.id">
+				<option value="{{events.id}}">{{event.name}}</option>
+				need to restrict this to the specific events within the games that the team is a part of 
+			</select>
+		</label> 
+		<br> -->
+
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>
