@@ -10,11 +10,17 @@
 SELECT games_year AS Year, country, city, IF(season = 1, "Summer", "Winter") AS Season
  FROM alien_games
 
--- Gets the team name, number of athletes, and gold medals won
--- for an alien games previously selected by user
-SELECT name, numAthletes AS 'Number of Athletes', goldMedals AS 'Gold Medals Won'
-	FROM teams
-	WHERE gamesID = :gamesID_Selected_From_Dropdown
+-- Gets the team name, number of athletes, gold medals won and year
+-- for an alien games previously selected by user, Total gold medals and total athletes are derived from joins!
+SELECT teams.name, SUM(IF(athleteID=events.goldWinner, 1, 0)) AS "Gold Medals", 
+	SUM(IF(athletes.teamID=teams.ID, 1, 0)) AS "Num. Athletes", alien_games.games_year AS "Year"
+	FROM athletes_events
+        JOIN athletes ON athletes_events.athleteID = athletes.ID
+        JOIN events ON athletes_events.eventID = events.ID
+        JOIN teams ON athletes.teamID = teams.ID
+        JOIN alien_games ON teams.gamesID = alien_games.ID
+    WHERE gamesID = :gamesID_Selected_From_Dropdown
+    GROUP BY teams.name
 	
 -- Gets the event names and their winners for a specific alien games
 -- that was previously selected by the user
@@ -43,9 +49,6 @@ INSERT INTO teams (teams.name, gamesID) VALUES (:name_input, :gamesID_from_dropd
 
 -- Add new Athletes for the Team
 INSERT INTO athletes (firstName, lastName, teamID) VALUES (:firstName_input, :lastName_input, :teamID_from_dropdown)
---update the teams total number of athletes
-UPDATE teams SET numAthletes = numAthletes + 1
-	WHERE ID = :teamID_from_dropdown
 
 -- add a new event for the latest Alien Games
 -- First populate dropdown of all alien games FOR PICKING GAMESID
@@ -64,9 +67,6 @@ SELECT CONCAT(firstName, ' ', lastName) AS Athlete
 	FROM athletes
 	WHERE teamID = :teamID_input
 INSERT INTO events (name, goldTime, goldWinner, gamesID) VALUES (:name_input, :goldTime_input, :goldWinner_input, :gamesID_from_dropdown)
--- Update teams goldMedals attribute
-UPDATE teams SET goldMedals = goldMedals + 1
-	WHERE ID = :teamID_userInput
 
 --Now all other competing athletes have to be added to the event
 --This is handled by adding to the athletes_events table
@@ -102,15 +102,15 @@ UPDATE athletes SET firstName = :firstName_input,
 					teamID = :teamID_input
 	WHERE ID = :athlete_ID_from_update
 
--- Update Event
--- UPDATE events SET name = :name_input,
---				  goldWinner = :goldWinner_input,
---				  gamesID = :gamesID_input
---	WHERE ID = :events_ID_from_update
+Update Event
+UPDATE events SET name = :name_input,
+			  goldWinner = :goldWinner_input,
+				  gamesID = :gamesID_input
+	WHERE ID = :events_ID_from_update
 
--- Update what event an athlete competes in
--- UPDATE athletes_events SET eventID = :eventID_input
---	WHERE ID = :athleteID_input
+ Update what event an athlete competes in
+ UPDATE athletes_events SET eventID = :eventID_input
+	WHERE ID = :athleteID_input
 
 -- BELOW HERE ARE TO DELETE ITEMS
 
@@ -122,8 +122,6 @@ DELETE FROM teams WHERE ID = :team_ID_from_dropdown
 
 -- Delete an athlete
 DELETE FROM athletes WHERE ID = :athlete_selected_from_list
-UPDATE teams SET numAthletes = numAthletes - 1
-	WHERE :athlete_selected_from_list.teamID = ID
 
 -- Delete an Event
 DELETE FROM events WHERE ID = :event_selected_from_list

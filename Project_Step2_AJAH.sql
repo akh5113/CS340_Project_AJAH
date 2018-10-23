@@ -41,8 +41,6 @@ UNLOCK TABLES;
 CREATE TABLE `teams`(
 `ID` int(11) NOT NULL AUTO_INCREMENT,
 `name` varchar(100) NOT NULL,
-`numAthletes` int(11) DEFAULT 0,
-`goldMedals` int(11) DEFAULT 0,
 `gamesID` int(11) NOT NULL,
 UNIQUE KEY `name` (`name`),
 PRIMARY KEY(`ID`),
@@ -55,10 +53,10 @@ FOREIGN KEY (`gamesID`)
 --
 
 LOCK TABLES `teams` WRITE;
-INSERT INTO `teams` VALUES (1, 'Geds', 2, 1, 4),
-						   (2, 'Purple People', 1, 1, 3),
-						   (3, 'Goblins', 2, 2, 2),
-						   (4, 'Koni', 2, 1, 1);
+INSERT INTO `teams` VALUES (1, 'Geds', 4),
+						   (2, 'Purple People', 3),
+						   (3, 'Goblins', 2),
+						   (4, 'Koni', 1);
 UNLOCK TABLES;
 
 -- 
