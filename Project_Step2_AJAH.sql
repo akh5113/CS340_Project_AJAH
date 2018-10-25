@@ -41,7 +41,7 @@ UNLOCK TABLES;
 CREATE TABLE `teams`(
 `ID` int(11) NOT NULL AUTO_INCREMENT,
 `name` varchar(100) NOT NULL,
-`gamesID` int(11) NOT NULL,
+`gamesID` int(11),
 UNIQUE KEY `name` (`name`),
 PRIMARY KEY(`ID`),
 FOREIGN KEY (`gamesID`) 
