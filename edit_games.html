@@ -47,7 +47,7 @@ Aaron Johnson
 			Select: 
 			<select>
 				<option>Alien Games</option>
-				<!-- <option>Events</option> -->
+				<option>Events</option>
 				<option>Teams</option>
 				<option>Athlete</option>
 			</select>
@@ -83,24 +83,26 @@ Aaron Johnson
 
 
 	<!-- Events -->
-	<!--
+
 	<h3 id="events_update_delete" class="queryHeader">Events</h3>
-	Table to display results of Events query 
+	<!-- Table to display results of Events query -->
 	<table id="events_update_delete_table">
 		<thead>
 			<tr>
 				<th>Event Name</th>
-				<th>Gold Winner</th> id of athlete displayed as firstName lastName 
+				<th>Gold Winner</th> <!-- id of athlete displayed as firstName lastName -->
+				<th>Gold Winning Time</th>
 			</tr>
 		</thead>
 		<tbody>
 			<td>{{event.name}}</td>
-			<td>{{goldWinner}}</td> id of athlete displayed as firstName lastName 
+			<td>{{goldWinner}}</td> <!-- id of athlete displayed as firstName lastName -->
+			<td>{{goldTime}}</td>
 			<td><button onclick="deleteEvent({{events.id}})">Delete</button></td>
 			<td><a href="update_event.html">Update</a></td>
 		</tbody>
 	</table>
-	-->
+
 
 	<!-- Teams -->
 	<h3 id="team_update_delete" class="queryHeader">Team</h3>
@@ -117,7 +119,7 @@ Aaron Johnson
 			<td>{{teams.name}}</td>
 			<td>{{numAthletes}}</td>
 			<td>{{goldMedals}}</td>
-		<!--	<td><button onclick="deleteTeam({{teams.id}})">Delete</button></td> -->
+			<td><button onclick="deleteTeam({{teams.id}})">Delete</button></td>
 			<td><a href="update_team.html">Update</a></td>
 		</tbody>
 	</table>
