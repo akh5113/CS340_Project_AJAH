@@ -3,7 +3,9 @@
 -- Aaron Johnson
 -- Project Step 3 - Data Manipulation Queries
 
+-- --------------------------------------------------------------------------
 -- BELOW HERE ARE SQL QUERIES TO VIEW INFORMATION REGARDING THE ALIEN GAMES
+-- --------------------------------------------------------------------------
 
 -- get Alien Games information to populate a dropdown
 -- For selecting the alien games the user is interested in viewing
@@ -12,7 +14,7 @@ SELECT games_year AS Year, country, city, IF(season = 1, "Summer", "Winter") AS 
 
 -- Gets the team name, number of athletes, gold medals won and year
 -- for an alien games previously selected by user, Total gold medals and total athletes are derived from joins!
-SELECT teams.name, SUM(IF(athleteID=events.goldWinner, 1, 0)) AS "Gold Medals", 
+SELECT teams.name, SUM(IF(athleteID=events.goldWinner, 1, 0)) AS "Gold Medals", alien_games.games_year AS 'Year', IF(alien_games.season = 1, "Summer", "Winter") AS Season,
 	SUM(IF(athletes.teamID=teams.ID, 1, 0)) AS "Num. Athletes", alien_games.games_year AS "Year"
 	FROM athletes_events
         JOIN athletes ON athletes_events.athleteID = athletes.ID
@@ -29,12 +31,20 @@ SELECT name AS 'Event Name', CONCAT(firstName, ' ', lastName) AS 'Winner'
 		JOIN athletes ON events.ID=athletes.ID
 	WHERE gamesID = :gamesID_Selected_From_Dropdown
 
+-- Shows all the events for every game and the game the event was in
+SELECT events.name AS 'Event', alien_games.games_year AS 'Year', IF(alien_games.season = 1, "Summer", "Winter") AS Season,
+					   CONCAT(athletes.firstName, ' ', athletes.lastName) AS 'Gold Winner', goldTime AS 'Time'
+			FROM events
+				JOIN alien_games ON events.gamesID = alien_games.ID
+				JOIN athletes ON events.goldWinner = athletes.ID
+
 -- Gets all the athletes and the events they participated in. Also shows
 -- An X if they won gold in that event, and nothing if they did not
 SELECT CONCAT(firstName,' ', lastName) AS Athlete, events.name AS 'Competing Event',
-IF(athleteID=events.goldWinner, "X", " ") AS "Won Gold"
+IF(athleteID=events.goldWinner, "X", " ") AS "Won Gold", teams.name AS 'Team'
 	FROM athletes_events
 		JOIN athletes ON athletes_events.athleteID = athletes.ID
+		JOIN teams ON athletes.teamID = teams.ID
 		JOIN events ON athletes_events.eventID = events.ID
 	WHERE events.gamesID = :gamesID_Selected_From_Dropdown
 
@@ -82,7 +92,9 @@ SELECT CONCAT(firstName, ' ', lastName) AS Athlete
 INSERT INTO athletes_events (athleteID, eventID) VALUES (:athleteID_selection,  :eventID_selection)
 --The above would then be looped on the website to add more athletes to the event
 
+-- --------------------------------------------------------------------------
 -- BELOW HERE ARE QUERIES TO EDIT DATA IN THE DATABASE
+-- --------------------------------------------------------------------------
 
 -- Update an alien games
 UPDATE alien_games SET  games_year = :games_yearInput, 
@@ -112,7 +124,9 @@ UPDATE events SET name = :name_input,
  UPDATE athletes_events SET eventID = :eventID_input
 	WHERE ID = :athleteID_input
 
+-- --------------------------------------------------------------------------
 -- BELOW HERE ARE TO DELETE ITEMS
+-- --------------------------------------------------------------------------
 
 -- Delete an entire Alien Game
 DELETE FROM alien_games WHERE ID = :alien_game_selected_from_dropdown
