@@ -31,7 +31,7 @@ SELECT name AS 'Event Name', CONCAT(firstName, ' ', lastName) AS 'Winner'
 		JOIN athletes ON events.ID=athletes.ID
 	WHERE gamesID = :gamesID_Selected_From_Dropdown
 
--- Shows all the events for every game and the game the event was in
+-- Shows all the events for every game and the year the event was in
 SELECT events.name AS 'Event', alien_games.games_year AS 'Year', IF(alien_games.season = 1, "Summer", "Winter") AS Season,
 					   CONCAT(athletes.firstName, ' ', athletes.lastName) AS 'Gold Winner', goldTime AS 'Time'
 			FROM events
@@ -48,7 +48,9 @@ IF(athleteID=events.goldWinner, "X", " ") AS "Won Gold", teams.name AS 'Team'
 		JOIN events ON athletes_events.eventID = events.ID
 	WHERE events.gamesID = :gamesID_Selected_From_Dropdown
 
+-- --------------------------------------------------------------------------
 -- BELOW HERE ARE QUERIES TO ADD NEW DATA TO THE DATABASE
+-- --------------------------------------------------------------------------
 
 -- add new Alien Games year, season, and country
 INSERT INTO alien_games (games_year, season, country, city) VALUES (:year_input, :season_bit_from_dropdown, :country_input, :city_input)
