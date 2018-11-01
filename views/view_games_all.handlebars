@@ -1,0 +1,112 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- View All Homepage -->
+
+<html>
+<head>
+	<title>View All | Alien Games</title>
+</head>
+<body>
+	
+	<!-- Welcome Statement -->
+	<h1 class="pageHeader">All Information</h1>
+
+	<div>
+		<h3 id="all_games" class="queryHeader">All Alien Games</h3>
+		<table id="games_table_all">
+			<thead>
+				<th>Year</th>
+				<th>Season</th>
+				<th>Host Country</th>
+				<th>Host City</th>
+			</thead>
+			<tbody>
+				{{#each alien_games}}
+				<tr>
+					<td>{{Year}}</td>
+					<td>{{Season}}</td> 
+					<td>{{country}}</td>
+					<td>{{city}}</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+
+	<!-- The Events Results displays the event names and their winners, also the alien games participated in -->
+	<h3 id="all_events" class="queryHeader">All Events</h3>
+	<!-- Table to display results of Events query -->
+	<table id="events_table_all">
+		<thead>
+			<th>Event Name</th>
+			<th>Year</th>
+			<th>Season</th>
+			<th>Gold Winner</th> <!-- id of athlete displayed as firstName lastName -->
+			<th>Gold Winning Time</th>			
+		</thead>
+		<tbody>
+			{{#each events}}
+			<tr>
+				<td>{{Event}}</td>
+				<td>{{Year}} </td>
+				<td>{{Season}}</td> <!-- gamesID used to display games year and eseason -->
+				<td>{{Gold Winner}}</td> <!-- id of athlete displayed as firstName lastName -->
+				<td>{{Time}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+
+	<!-- The Team Results displays the team name, number of athletes, and the alien games participated in-->
+	<h3 id="all_teams" class="queryHeader">All Teams</h3>
+	<!-- table to display results of Teams query  -->
+	<table id="teams_table_all">
+		<thead>
+			<th>Team Name</th>
+			<th>Year</th>
+			<th>Season</th>
+			<th>Number of Athletes</th>
+			<th>Gold Medals Won</th>
+		</thead>
+		<tbody>
+			{{#each teams}}
+			<tr>
+				<td>{{Team}}</td>
+				<td>{{Year}} </td>
+				<td>{{Season}}</td> <!-- gamesID used to display games year and eseason -->
+				<td>{{Num. Athletes}}</td>
+				<td>{{Gold Medals}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+
+	<!-- The Athlete Results displays the name of the athletes and the name of the events that 
+		they participated in. Shows an X if they won the event and nothing if not-->
+	<h3 id="all_athletes" class="queryHeader">All Athletes + Events</h3>
+		<!-- table to display results of athletes query  -->
+	<table id="athletes_table_all">
+		<thead>
+			<th>Athlete Name</th>
+			<th>Team</th>
+			<th>Event Name</th>
+			<th>Won Gold</th>
+		</thead>
+		<tbody>
+			{{#each athletes}}
+			<tr>
+				<td>{{Athlete}}</td>
+				<td>{{Team}}</td> <!-- team name derived from teamID -->
+				<td>{{Competing Event}}</td>
+				<td>{{Won Gold}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+
+</body>
+</html>
