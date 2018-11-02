@@ -51,7 +51,7 @@ module.exports = function(){
 	                res.write(JSON.stringify(error));
 	                res.end();
 	        }
-	        context.alien_games = results;
+	        context.teams = results;
 	        complete();
 		});
 	}
