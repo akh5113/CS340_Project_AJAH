@@ -29,7 +29,7 @@ module.exports = function(){
 		console.log(req.body.alien_games) //needed to populate games dropdown
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
-		var sql = "INSERT INTO teams (teams.name, gamesID) VALUES (?, ?)"
+		var sql = "INSERT INTO teams (teams.name, gamesID) VALUES (?,?)";
 		var inserts = [req.body.name, req.body.gamesID];
 		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
 			if(error){
