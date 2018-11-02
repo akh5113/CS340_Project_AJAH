@@ -72,7 +72,7 @@ module.exports = function(){
 		function complete(){
 			callbackCount++;
 			if(callbackCount >=4){
-				res.render('view_games_all', context)
+				res.render('edit_games', context)
 			}
 		}
 	});
