@@ -26,7 +26,7 @@ module.exports = function(){
 
 	/* Get atheltes from a given games year */ 
 	function getAthletesByGames(res, mysql, context, complete){
-		var sql = "SELECT CONCAT(firstName,' ', lastName) AS Athlete, events.name AS 'Competing Event', IF(athleteID=events.goldWinner, 'X', " ") AS 'Won Gold', teams.name AS 'Team' FROM athletes_events JOIN athletes ON athletes_events.athleteID = athletes.ID JOIN teams ON athletes.teamID = teams.ID JOIN events ON athletes_events.eventID = events.ID WHERE events.gamesID = ?";
+		var sql = "SELECT CONCAT(firstName,' ', lastName) AS Athlete, events.name AS 'Competing Event', IF(athleteID=events.goldWinner, 'X', ' ') AS 'Won Gold', teams.name AS 'Team' FROM athletes_events JOIN athletes ON athletes_events.athleteID = athletes.ID JOIN teams ON athletes.teamID = teams.ID JOIN events ON athletes_events.eventID = events.ID WHERE events.gamesID = ?";
 		console.log(req.params)
 		var inserts = [req.params.alien_games]
 		mysql.pool.query(sql, inserts, function(error, results, fields){
