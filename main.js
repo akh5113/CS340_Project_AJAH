@@ -18,6 +18,11 @@ app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 app.use('/view_games', require('./view_games.js'));
 app.use('/view_games_all', require('./view_games_all.js'))
+//WILL UNCOMMENT WHEN WORKING!
+//app.use('/add_games', require('./add_games.js'))
+app.use('/add_team', require('./add_team.js'))
+//app.use('/add_event', require('./add_event.js'))
+//app.use('/add_athlete', require('./add_athlete.js'))
 app.use('/', express.static('public'));
 
 app.use(function(req,res){
