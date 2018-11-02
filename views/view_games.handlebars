@@ -20,11 +20,11 @@ Aaron Johnson
 	<div>
 		<h3 class="queryHeader">Select Game</h3>
 		<!-- Get Form for selecting a Game -->
-		<form id="alien_games_select" acition="/alien_games" method="get">
+		<form id="alien_games_select" action="/view_games" method="get">
 			Games: 
 			<select name="alien_games.id">
 				{{#each alien_games}}
-				<option value="{{alien_games.id}}"> {{games_year}} {{season}}</option>
+				<option value="{{alien_games.ID}}"> {{Year}} {{Season}}</option>
 				{{/each}}
 			</select>
 			
@@ -93,19 +93,19 @@ Aaron Johnson
 		<!-- table to display results of athletes query  -->
 	<table id="athletes_table">
 		<thead>
-			<tr>
-				<th>Athlete Name</th>
+				<th>Athlete</th>
 				<th>Team</th>
 				<th>Event Name</th>
 				<th>Won Gold</th>
-			</tr>
 		</thead>
 		<tbody>
 			{{#each athletes}}
-			<td>{{firstName}} {{lastName}}</td>
-			<td>{{team.name}}</td> <!-- team name derived from teamID -->
-			<td>{{event.name}}</td>
-			<td>{{goldWinner}}</td>
+			<tr>
+				<td>{{Athlete}}</td>
+				<td>{{Team}}</td> <!-- team name derived from teamID -->
+				<td>{{CompetingEvent}}</td>
+				<td>{{WonGold}}</td>
+			</tr>
 			{{/each}}
 		</tbody>
 	</table>
