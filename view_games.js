@@ -11,7 +11,7 @@ module.exports = function(){
 	/*get all alien games for dropdown */
 	//NOTE: edited sql
 	function getGamesDropdown(res, mysql, context, complete){
-		var sql = "SELECT games_year AS Year, country, city, IF(season = 1, 'Summer', 'Winter') AS Season FROM alien_games";
+		var sql = "SELECT games_year AS Year, IF(season = 1, 'Summer', 'Winter') AS Season FROM alien_games";
 		mysql.pool.query(sql, function(error, results, fields){
 			if(error){
 			res.write(JSON.stringify(error));
