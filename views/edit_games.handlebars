@@ -72,13 +72,15 @@ Aaron Johnson
 		</thead>
 		<tbody>
 			{{#each alien_games}}
-			<td>{{year}}</td>
-			<td>{{country}}</td>
-			<td>{{city}}</td>
-			<td>{{season}}</td>
+			<tr>
+				<td>{{year}}</td>
+				<td>{{country}}</td>
+				<td>{{city}}</td>
+				<td>{{season}}</td>
 
-			<!-- <td><button onclick="deleteGames({{games.id}})">Delete</button></td> -->
-			<td><a href="update_games.html">Update</a></td>
+				<!-- <td><button onclick="deleteGames({{games.id}})">Delete</button></td> -->
+				<td><a href="update_games.html">Update</a></td>
+			</tr>
 			{{/each}}
 		</tbody>
 	</table>
@@ -99,12 +101,15 @@ Aaron Johnson
 		</thead>
 		<tbody>
 			{{#each events}}
-			<td>{{event.name}}</td>
-			<td>{{goldWinner}}</td> <!-- id of athlete displayed as firstName lastName -->
-			<td>{{goldTime}}</td>
-			<td><button onclick="deleteEvent({{events.id}})">Delete</button></td>
-			<td><a href="update_event.html">Update</a></td>
+				<tr>
+				<td>{{event.name}}</td>
+				<td>{{goldWinner}}</td> <!-- id of athlete displayed as firstName lastName -->
+				<td>{{goldTime}}</td>
+				<td><button onclick="deleteEvent({{events.id}})">Delete</button></td>
+				<td><a href="update_event.html">Update</a></td>
+				</tr>
 			{{/each}}
+			
 		</tbody>
 	</table>
 
@@ -121,13 +126,17 @@ Aaron Johnson
 			</tr>
 		</thead>
 		<tbody>
+			
 			{{#each teams}}
-			<td>{{teams.name}}</td>
-			<td>{{numAthletes}}</td>
-			<td>{{goldMedals}}</td>
-			<td><button onclick="deleteTeam({{teams.id}})">Delete</button></td>
-			<td><a href="update_team.html">Update</a></td>
+				<tr>
+				<td>{{teams.name}}</td>
+				<td>{{numAthletes}}</td>
+				<td>{{goldMedals}}</td>
+				<td><button onclick="deleteTeam({{teams.id}})">Delete</button></td>
+				<td><a href="update_team.html">Update</a></td>
+				</tr>
 			{{/each}}
+			
 		</tbody>
 	</table>
 
@@ -144,13 +153,17 @@ Aaron Johnson
 			</tr>
 		</thead>
 		<tbody>
+			
 			{{#each athletes}}
-			<td>{{event.name}}</td>
-			<td>{{firstName}} {{lastName}}</td>
-			<td>{{goldWinner}}</td>
-			<td><button onclick="deleteAthlete({{athletes.id}})">Delete</button></td>
-			<td><a href="update_athlete.html">Update</a></td>
+				<tr>
+				<td>{{event.name}}</td>
+				<td>{{firstName}} {{lastName}}</td>
+				<td>{{goldWinner}}</td>
+				<td><button onclick="deleteAthlete({{athletes.id}})">Delete</button></td>
+				<td><a href="update_athlete.html">Update</a></td>
+				</tr>
 			{{/each}}
+
 		</tbody>
 	</table>
 

@@ -1,0 +1,114 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- View Alien Games Homepage -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View | Alien Games</title>
+</head>
+<body>
+	
+	<!-- Welcome Statement -->
+	<h1 class="pageHeader">Alien Games Information</h1>
+
+	<!-- Select Game -->
+	<div>
+		<h3 class="queryHeader">Select Game</h3>
+		<!-- Get Form for selecting a Game -->
+		<form id="alien_games_select" action="/view_games" method="get">
+			Games: 
+			<select name="alien_games.id">
+				{{#each alien_games}}
+				<option value="{{alien_games.ID}}"> {{Year}} {{Season}}</option>
+				{{/each}}
+			</select>
+			
+		</form>
+	</div>
+	
+	<!-- View Info -->
+	<div>
+	<h3 class="queryHeader">Select Info</h3>
+		<!-- Select teams, select events, select athletes -->
+		<form name="entities">
+			<input id="view_events" type="submit" form="alien_games_select" value="View Events"></input>
+			<input id="view_teams" type="submit" form="alien_games_select" value="View Teams"></input>
+			<input id="view_athletes" type="submit" form="alien_games_select" value="View Athletes"></input>
+		</form>
+
+	</div>
+
+	<!-- Information from selection -->
+
+	<!-- The Events Results displays the event names and their winners for a specific
+		alien games that is previously selected by user -->
+	<h3 id="events_results" class="queryHeader">Events in {{games_year}} {{season}}</h3>
+	<!-- Table to display results of Events query -->
+	<table id="events_table">
+		<thead>
+			<tr>
+				<th>Event Name</th>
+				<th>Gold Winner</th> <!-- id of athlete displayed as firstName lastName -->
+				<th>Gold Winning Time</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each events}}
+			<td>{{event.name}}</td>
+			<td>{{goldWinner}}</td> <!-- id of athlete displayed as firstName lastName -->
+			<td>{{goldTime}}</td>
+			{{/each}}
+		</tbody>
+	</table>
+
+	<!-- The Team Results displays the team name, number of athletes, and gold medals won
+		for all teams that participated in the alien games previously selected by user -->
+	<h3 id="team_results" class="queryHeader">Teams in {{games_year}} {{season}}</h3>
+	<!-- table to display results of Teams query  -->
+	<table id="teams_table">
+		<thead>
+			<tr>
+				<th>Team Name</th>
+				<th>Number of Athletes</th>
+				<th>Gold Medals Won</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each teams}}
+			<td>{{teams.name}}</td>
+			<td>{{numAthletes}}</td>
+			<td>{{goldMedals}}</td>
+			{{/each}}
+		</tbody>
+	</table>
+
+	<!-- The Athlete Results displays the name of the athletes and the name of the events that 
+		they participated in. Shows an X if they won he event and nothing if not-->
+	<h3 id="athletes_results" class="queryHeader">Athlete Results in {{games_year}} {{season}}</h3>
+		<!-- table to display results of athletes query  -->
+	<table id="athletes_table">
+		<thead>
+				<th>Athlete</th>
+				<th>Team</th>
+				<th>Event Name</th>
+				<th>Won Gold</th>
+		</thead>
+		<tbody>
+			{{#each athletes}}
+			<tr>
+				<td>{{Athlete}}</td>
+				<td>{{Team}}</td> <!-- team name derived from teamID -->
+				<td>{{CompetingEvent}}</td>
+				<td>{{WonGold}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+
+</body>
+</html>

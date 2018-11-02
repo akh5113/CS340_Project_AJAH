@@ -3,7 +3,6 @@
     handlebars for HTML templates  
 */
 
-//test comment
 
 var express = require('express');
 var mysql = require('./dbcon.js');
