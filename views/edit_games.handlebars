@@ -20,22 +20,22 @@ Aaron Johnson
 	<!-- Buttons to link to page to add Games, Events, Athletes, Teams -->
 	<h3>Add Information</h3>
 	<!-- Add Alien Games -->
-	<form action="add_games.html">
+	<form action="add_games">
 	    <input type="submit" value="Add Alien Game" />
 	</form>
 
 	<!-- Add Event -->
-	<form action="add_event.html">
+	<form action="add_event">
 	    <input type="submit" value="Add Event" />
 	</form>
 
 	<!-- Add Team -->
-	<form action="add_team.html">
+	<form action="add_team">
 	    <input type="submit" value="Add Team" />
 	</form>
 
 	<!-- Add Athlete -->
-	<form action="add_athlete.html">
+	<form action="add_athlete">
 	    <input type="submit" value="Add Athelete" />
 	</form>
 
@@ -71,12 +71,15 @@ Aaron Johnson
 			</tr>
 		</thead>
 		<tbody>
+			{{#each alien_games}}
 			<td>{{year}}</td>
 			<td>{{country}}</td>
 			<td>{{city}}</td>
 			<td>{{season}}</td>
+
 			<!-- <td><button onclick="deleteGames({{games.id}})">Delete</button></td> -->
 			<td><a href="update_games.html">Update</a></td>
+			{{/each}}
 		</tbody>
 	</table>
 
@@ -95,11 +98,13 @@ Aaron Johnson
 			</tr>
 		</thead>
 		<tbody>
+			{{#each events}}
 			<td>{{event.name}}</td>
 			<td>{{goldWinner}}</td> <!-- id of athlete displayed as firstName lastName -->
 			<td>{{goldTime}}</td>
 			<td><button onclick="deleteEvent({{events.id}})">Delete</button></td>
 			<td><a href="update_event.html">Update</a></td>
+			{{/each}}
 		</tbody>
 	</table>
 
@@ -116,11 +121,13 @@ Aaron Johnson
 			</tr>
 		</thead>
 		<tbody>
+			{{#each teams}}
 			<td>{{teams.name}}</td>
 			<td>{{numAthletes}}</td>
 			<td>{{goldMedals}}</td>
 			<td><button onclick="deleteTeam({{teams.id}})">Delete</button></td>
 			<td><a href="update_team.html">Update</a></td>
+			{{/each}}
 		</tbody>
 	</table>
 
@@ -137,11 +144,13 @@ Aaron Johnson
 			</tr>
 		</thead>
 		<tbody>
+			{{#each athletes}}
 			<td>{{event.name}}</td>
 			<td>{{firstName}} {{lastName}}</td>
 			<td>{{goldWinner}}</td>
 			<td><button onclick="deleteAthlete({{athletes.id}})">Delete</button></td>
 			<td><a href="update_athlete.html">Update</a></td>
+			{{/each}}
 		</tbody>
 	</table>
 
