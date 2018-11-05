@@ -21,18 +21,13 @@ Aaron Johnson
 		<!-- No need to add number of athletes or number of gold winning athletes as
 			those are derived attributes -->
 
-		<label>Team Name:
-			<input type="text" name="teams.name">
-		</label>
-		<br>
-
-		<label>Alien Games:
-			<select name="alien_games_is>
-				<option value="{{alien_games.ID}}">{{games_year}}{{season}}</option>
+			Team Name: <input type="text" name="name" required><br>
+			Alien Games: <select name="gamesID">
+				{{#each alien_games}}
+				<option value="{{ID}}">{{Year}} {{Season}}</option>
+				{{/each}}
 			</select>
-		</label>
 		<br>
-
 		<input type="submit" value="Submit">
 	</form>
 
