@@ -1,0 +1,53 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- Add Athlete Page -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Athlete | Alien Games</title>
+</head>
+<body>
+	
+	<!-- Header -->
+	<h1 class="pageHeader">Add Athlete</h1>
+
+	<form id="add_athlete" action="/add_athlete" method="post">
+
+		<label>First Name:
+			<input type="text" name="firstName">
+		</label>
+		<br>
+
+		<label>Last Name:
+				<input type="text" name="lastName">
+		</label>
+		<br>
+
+		<label>Team:
+			<select name="teams.id">
+				{{#each teams}}
+				<option value="{{ID}}">{{name}}</option>
+				{{/each}}
+			</select>
+		</label>
+		<br>
+
+<!--
+		<label>Events:
+			<select multiple name="eventID">
+				{{#each events}}
+				<option value="{{ID}}">{{name}}</option>
+				{{/each}}
+			</select>
+		</label> 
+		<br>  -->
+
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>
