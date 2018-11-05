@@ -1,0 +1,61 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- Add Event Page -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Event | Alien Games</title>
+</head>
+<body>
+	
+	<!-- Header -->
+	<h1 class="pageHeader">Add Event</h1>
+
+	<form id="add_event" action="/add_event" method="post">
+
+		<label>Event Name:
+			<input type="text" name="name">
+		</label>
+		<br>
+
+		<label>Gold Winner:
+			<select name="season">
+				{{#each athletes}}
+				<option value="{{ID}}">{{firstName}} {{lastName}}</option>
+				{{/each}}
+			</select>
+		</label>
+		<br>
+
+		<label>Gold Winning Time:
+			<input type="time" name="goldTime">
+		</label>
+		<br>
+
+		<label>Alien Games:
+			<select name="alien_games.id">
+				{{#each alien_games}}
+				<option value="{{ID}}">{{Year}} {{Season}}</option>
+				{{/each}}
+			</select>
+		</label>
+		<br>
+
+		<label>Athletes:
+			<!-- auto populated with athletes that are in the teams that are participating in that years games -->
+			{{#each athletes}}
+			<input type="checkbox" name="athleteID" value="{{ID}}">{{firstName}} {{lastName}}</option> 
+			{{/each}}
+		</label>
+		<br>
+
+		<input type="submit" value="Submit">
+	</form>
+
+</body>
+</html>
