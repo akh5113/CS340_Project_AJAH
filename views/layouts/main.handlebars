@@ -2,9 +2,13 @@
 <html>
 <head>
 	<title>Alien Games</title>
+	{{#each jsscripts}}
+<script src="/static/{{this}}"></script>
+{{/each}}
 </head>
 <body>
 	{{{body}}}
 </body>
-<script src="view_games.js"></script>
+<!-- <script src="view_games.js"></script> -->
+
 </html>
