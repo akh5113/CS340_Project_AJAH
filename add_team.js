@@ -35,6 +35,8 @@ module.exports = function(){
 		});
 	}
 
+	/*RENDER PAGE */
+
 	router.get('/', function(req, res){
 			var callbackCount = 0;
 			var context = {};
@@ -51,7 +53,7 @@ module.exports = function(){
 		});
 
 
-	/* Add a person */
+	/* Add a team */
 	
 	router.post('/', function(req, res){
 		console.log(req.body.alien_games)

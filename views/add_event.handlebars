@@ -24,9 +24,9 @@ Aaron Johnson
 		<br>
 
 		<label>Gold Winner:
-			<select name="season">
+			<select name="goldWinner">
 				{{#each athletes}}
-				<option value="{{ID}}">{{firstName}} {{lastName}}</option>
+				<option value="{{ID}}">{{Athlete}}</option>
 				{{/each}}
 			</select>
 		</label>
@@ -38,7 +38,7 @@ Aaron Johnson
 		<br>
 
 		<label>Alien Games:
-			<select name="alien_games.id">
+			<select name="gamesID">
 				{{#each alien_games}}
 				<option value="{{ID}}">{{Year}} {{Season}}</option>
 				{{/each}}
@@ -46,14 +46,17 @@ Aaron Johnson
 		</label>
 		<br>
 
+		
+		<!-- auto populated with athletes that are in the teams that are participating in that years games -->
+<!--
 		<label>Athletes:
-			<!-- auto populated with athletes that are in the teams that are participating in that years games -->
+
 			{{#each athletes}}
-			<input type="checkbox" name="athleteID" value="{{ID}}">{{firstName}} {{lastName}}</option> 
+			<input type="checkbox" name="athleteID" value="{{ID}}">{{Athlete}}</option> 
 			{{/each}}
 		</label>
 		<br>
-
+-->
 		<input type="submit" value="Submit">
 	</form>
 
