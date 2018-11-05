@@ -24,7 +24,7 @@ module.exports = function(){
 	} 
 
 	/* Add a person */
-	 
+	
 	router.post('/', function(req, res){
 		console.log(req.body.alien_games) //needed to populate games dropdown
 		console.log(req.body)
@@ -41,7 +41,7 @@ module.exports = function(){
 			}
 		});
 	});
-
+	
 
 	return router;
 }();
