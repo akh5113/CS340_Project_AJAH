@@ -21,7 +21,7 @@ module.exports = function(){
 		});
 	} 
 
-    /* populate atheltes dropdown and check box */
+    /* populate atheltes dropdown*/
     //NOTE edited sql
     function getAthletes(res, mysql, context, complete){
 		var sql = "SELECT CONCAT(firstName, ' ' , lastName) AS Athlete, athletes.ID FROM athletes";
@@ -34,6 +34,37 @@ module.exports = function(){
 	        complete();
 		});
 	} 
+
+	/* populate event dropdown - not sure if this is right*/
+	/*
+	function getEventsDropdown(res, mysql, context, complete){
+		var sql = "SELECT eventsID, name FROM athletes_events WHERE gamesID = '?'";
+		mysql.pool.query(sql, function(error, results, fields){
+			if(error){
+	                res.write(JSON.stringify(error));
+	                res.end();
+	        }
+	        context.events = results;
+	        complete();
+		});
+	} */
+
+
+	/*change sql to include join so the user wont have to select a team to choose atheltes from a particular game year 
+	also update to select FROM athletes_events and be able to select name via join*/
+	/* populate atheltes checkbox not sure if this is right*/
+	/*
+    function getAthletes(res, mysql, context, complete){
+		var sql = "SELECT CONCAT(firstName, ' ' , lastName) AS Athlete, athletesID FROM athletes WHERE teamID = '?'";
+		mysql.pool.query(sql, function(error, results, fields){
+			if(error){
+	                res.write(JSON.stringify(error));
+	                res.end();
+	        }
+	        context.athletes = results;
+	        complete();
+		});
+	} */
 
     /* get events */
    function getAllEvents(res, mysql, context, complete){
@@ -55,11 +86,12 @@ module.exports = function(){
 			var context = {};
 			var mysql = req.app.get('mysql');
 			getGamesDropdown(res,mysql,context, complete);
+			getEventsDropdown(res, mysql, context, complete);
 			getAthletes(res, mysql, context, complete);
 			getAllEvents(res, mysql, context, complete);
 			function complete(){
 				callbackCount++;
-				if(callbackCount >=3){
+				if(callbackCount >=4){
 					res.render('add_event', context)
 				}
 			}
