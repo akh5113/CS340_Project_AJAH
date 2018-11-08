@@ -148,10 +148,16 @@ router.post('/', function(req, res){
                 res.write(JSON.stringify(error));
                 res.end();
 			}else{
-				res.redirect('/edit_games')
-			}
-		});
-});
+				var mysql2 = req.app.get('mysql');
+				var sql2= "INSERT INTO athletes_events (athleteID, eventID) VALUES (?, (SELECT MAX(ID) FROM events))";
+				var inserts2 = [req.body.goldWinner];
+				sql2 = mysql2.pool.query(sql2, inserts2, function(error, results, fields){
+					if(error){
+						console.log(JSON.stringify(error));
+						res.write(JSON.stringify(error));
+						res.end();
+					}else{res.redirect('/edit_games')
+		}});}});});
 				
 	
 
