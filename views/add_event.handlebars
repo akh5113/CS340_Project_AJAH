@@ -10,6 +10,7 @@ Aaron Johnson
 <html>
 <head>
 	<title>Add Event | Alien Games</title>
+	<script src="/static/filterByGames.js"></script>
 </head>
 <body>
 	
@@ -17,18 +18,19 @@ Aaron Johnson
 	<h1 class="pageHeader">Add Event</h1>
 
 	<form id="add_event" action="/add_event" method="post">
-
-		<label>Event Name:
-			<input type="text" name="name">
-		</label>
-		<br>
-
-		<label>Gold Winner:
-			<select name="goldWinner">
-				{{#each athletes}}
-				<option value="{{ID}}">{{Athlete}}</option>
+		<label>Alien Games To Add Event To:
+			<select id="add_event_filter" name="gamesID">
+				{{#each alien_games}}
+					<option value="{{ID}}">{{Year}} {{Season}}</option>
 				{{/each}}
 			</select>
+		<input type="button" value="Submit" onclick="filterAthletesByGamesForEvent()">
+		</label>
+		<br>
+		
+		{{#if athletes}}
+		<label>Event Name:
+			<input type="text" name="name">
 		</label>
 		<br>
 
@@ -36,28 +38,26 @@ Aaron Johnson
 			<input type="time" name="goldTime">
 		</label>
 		<br>
-
-		<label>Alien Games:
-			<select name="gamesID">
-				{{#each alien_games}}
-				<option value="{{ID}}">{{Year}} {{Season}}</option>
+		
+		<label>Gold Winner:
+			<select name="goldWinner">
+				{{#each athletes}}
+				<option value="{{Winner}}">{{Athlete}} {{Team}}</option>
 				{{/each}}
 			</select>
 		</label>
 		<br>
-
-		
-		
+		<input type="submit" value="Submit">
 	</form>
 
-	<h1>Add Athlete to Event</h1>
+	<h2>Add Athletes That Competed In This Event (Besides Gold Winner)</h2>
 
 	<form id="select_game" action="/add_event" method="post">
 		<label>Games:
 			<br>
 			<select name="alien_game.name">
 				{{#each events}}
-				<option value="{{ID}}">{{name}}</option>
+				<option value="{{eventID}}">{{name}}</option>
 				{{/each}}
 			</select>
 		</label>
@@ -93,6 +93,6 @@ Aaron Johnson
 		<br>
 		<input type="submit" value="Submit">
 	</form>
-
+	{{/if}}
 </body>
 </html>

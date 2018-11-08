@@ -20,20 +20,37 @@ module.exports = function(){
 	        complete();
 		});
 	} 
-
-    /* populate atheltes dropdown*/
-    //NOTE edited sql
-    function getAthletes(res, mysql, context, complete){
-		var sql = "SELECT CONCAT(firstName, ' ' , lastName) AS Athlete, athletes.ID FROM athletes";
-		mysql.pool.query(sql, function(error, results, fields){
+	
+	//gets a single, previously selected game
+	function getGames(req, res, mysql, context, complete){
+		var query = "SELECT games_year AS 'Year', IF(season = 1, 'Summer', 'Winter') AS 'Season', alien_games.ID FROM alien_games WHERE alien_games.ID = ?";
+		console.log(req.params)
+		var inserts = [req.params.gamesID]
+		mysql.pool.query(query, inserts, function(error, results, fields){
 			if(error){
 	                res.write(JSON.stringify(error));
 	                res.end();
 	        }
-	        context.athletes = results;
+	        context.alien_games = results; 
 	        complete();
 		});
-	} 
+	}	
+
+    /* populate athletes dropdown*/
+    //NOTE edited sql
+	function getAthletesByGames(req, res, mysql, context, complete){
+		var query = "SELECT athletes.ID AS 'Winner', CONCAT(firstName,' ', lastName) AS 'Athlete', teams.name AS 'Team' FROM athletes JOIN teams ON athletes.teamID = teams.ID JOIN alien_games ON teams.gamesID = alien_games.ID WHERE alien_games.ID = ?";
+		console.log(req.params)
+		var inserts = [req.params.gamesID]
+		mysql.pool.query(query, inserts, function(error, results, fields){
+			if(error){
+	                res.write(JSON.stringify(error));
+	                res.end();
+	        }
+	        context.athletes = results; 
+	        complete();
+		});
+	}
 
 	/* populate event dropdown - not sure if this is right*/
 	/*
@@ -47,8 +64,8 @@ module.exports = function(){
 	        context.events = results;
 	        complete();
 		});
-	} */
-
+	} 
+	/*
 
 	/*change sql to include join so the user wont have to select a team to choose atheltes from a particular game year 
 	also update to select FROM athletes_events and be able to select name via join*/
@@ -86,37 +103,56 @@ module.exports = function(){
 			var context = {};
 			var mysql = req.app.get('mysql');
 			getGamesDropdown(res,mysql,context, complete);
-			getEventsDropdown(res, mysql, context, complete);
-			getAthletes(res, mysql, context, complete);
-			getAllEvents(res, mysql, context, complete);
+			//getEventsDropdown(res, mysql, context, complete);
+			//getAthletes(res, mysql, context, complete);
+			//getAllEvents(res, mysql, context, complete);
 			function complete(){
 				callbackCount++;
-				if(callbackCount >=4){
+				if(callbackCount >=1){
 					res.render('add_event', context)
 				}
 			}
 		});
+	/* Render Filtered Page */
+	router.get('/filterAthletesForEvent/:gamesID', function(req, res){
+		var callbackCount = 0;
+		var context = {};
+		context.jsscripts = ["filterByGames.js"];
+		var mysql = req.app.get('mysql');
+		getGames(req, res, mysql, context, complete);
+		//getGamesDropdown(res,mysql,context, complete);
+		getAthletesByGames(req, res, mysql, context, complete);	
+		function complete(){
+			callbackCount++;
+			if(callbackCount >=2){
+				res.render('add_event', context)
+			}
+		}
 
+	});
 
+		
+		
 	/* Add an event */
 	
-	router.post('/', function(req, res){
-		console.log(req.body.alien_games)
-		console.log(req.body.athletes)
-		console.log(req.body)
+router.post('/', function(req, res){
+//		console.log(req.body.alien_games);
+//		console.log(req.body.athletes);
+//		console.log(req.body);
 		var mysql = req.app.get('mysql');
 		var sql = "INSERT INTO events (name, goldTime, goldWinner, gamesID) VALUES (?, ?, ?, ?)";
 		var inserts = [req.body.name, req.body.goldTime, req.body.goldWinner, req.body.gamesID];
 		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
 			if(error){
-				console.log(JSON.stringify(error))
+				console.log(JSON.stringify(error));
                 res.write(JSON.stringify(error));
                 res.end();
 			}else{
-				res.redirect('/add_event')
+				res.redirect('/edit_games')
 			}
 		});
-	});
+});
+				
 	
 
 	return router;

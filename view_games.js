@@ -23,8 +23,6 @@ module.exports = function(){
 		});
 	} 
 
-	
-	
 	// Get athletes from a given games year  
 	function getAthletesByGames(req, res, mysql, context, complete){
 		var query = "SELECT CONCAT(firstName,' ', lastName) AS 'Athlete', events.name AS 'CompetingEvent', IF(athleteID=events.goldWinner, 'X', ' ') AS 'WonGold', teams.name AS 'Team' FROM athletes_events JOIN athletes ON athletes_events.athleteID = athletes.ID JOIN teams ON athletes.teamID = teams.ID JOIN events ON athletes_events.eventID = events.ID WHERE events.gamesID = ?";
@@ -35,7 +33,7 @@ module.exports = function(){
 	                res.write(JSON.stringify(error));
 	                res.end();
 	        }
-	        context.athletes = results; //not sure if this is right w/ dropdwon
+	        context.athletes = results; 
 	        complete();
 		});
 	}
@@ -97,8 +95,6 @@ module.exports = function(){
 		var mysql = req.app.get('mysql');
 		getAthletesByGames(req, res, mysql, context, complete);
 		getGamesDropdown(res, mysql, context, complete);	
-		//getEventsByGames(res, mysql, context, complete);
-		//getTeamsByGames(res, mysql, context, complete);
 		function complete(){
 			callbackCount++;
 			if(callbackCount >=2){
@@ -116,8 +112,6 @@ module.exports = function(){
 		var mysql = req.app.get('mysql');
 		getEventsByGames(req, res, mysql, context, complete);
 		getGamesDropdown(res, mysql, context, complete);	
-		//getEventsByGames(res, mysql, context, complete);
-		//getTeamsByGames(res, mysql, context, complete);
 		function complete(){
 			callbackCount++;
 			if(callbackCount >=2){
@@ -135,8 +129,6 @@ module.exports = function(){
 		var mysql = req.app.get('mysql');
 		getTeamsByGames(req, res, mysql, context, complete);
 		getGamesDropdown(res, mysql, context, complete);	
-		//getEventsByGames(res, mysql, context, complete);
-		//getTeamsByGames(res, mysql, context, complete);
 		function complete(){
 			callbackCount++;
 			if(callbackCount >=2){
