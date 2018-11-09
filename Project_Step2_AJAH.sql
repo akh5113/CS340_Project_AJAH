@@ -19,7 +19,7 @@ CREATE TABLE `alien_games`(
 `season` tinyint(1) NOT NULL,
 `country` varchar(100) NOT NULL,
 `city` varchar(100),
-UNIQUE KEY `games_year` (`games_year`),
+CONSTRAINT UC_games UNIQUE (`games_year`, `season`),
 PRIMARY KEY(`ID`)
 )ENGINE=InnoDB;
 
@@ -28,10 +28,10 @@ PRIMARY KEY(`ID`)
 --
 
 LOCK TABLES `alien_games` WRITE;
-INSERT INTO `alien_games` VALUES (1, 2018, 0, 'Zorp', 'Zorp City'),
-								   (2, 2016, 1, 'Stogta', 'Stogta City'),
-								   (3, 2014, 0, 'Bealell', 'Bealell City'),
-								   (4, 2012, 1, 'Jaku', 'Jaku City');
+INSERT INTO `alien_games` VALUES (1, 2018, 0, 'Country1', 'City1'),
+								   (2, 2016, 1, 'Country2', 'City2'),
+								   (3, 2014, 0, 'Country3', 'City3'),
+								   (4, 2012, 1, 'Country4', 'City4');
 UNLOCK TABLES;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `teams`(
 `ID` int(11) NOT NULL AUTO_INCREMENT,
 `name` varchar(100) NOT NULL,
 `gamesID` int(11),
-UNIQUE KEY `name` (`name`),
+UNIQUE(`name`),
 PRIMARY KEY(`ID`),
 FOREIGN KEY (`gamesID`) 
 		REFERENCES `alien_games`(`ID`) ON DELETE CASCADE
@@ -53,10 +53,10 @@ FOREIGN KEY (`gamesID`)
 --
 
 LOCK TABLES `teams` WRITE;
-INSERT INTO `teams` VALUES (1, 'Geds', 4),
-						   (2, 'Purple People', 3),
-						   (3, 'Goblins', 2),
-						   (4, 'Koni', 1);
+INSERT INTO `teams` VALUES (1, 'Team1', 4),
+						   (2, 'Team2', 3),
+						   (3, 'Team3', 2),
+						   (4, 'Team4', 1);
 UNLOCK TABLES;
 
 -- 
@@ -68,6 +68,7 @@ CREATE TABLE `athletes`(
 `firstName` varchar(50) NOT NULL,
 `lastName` varchar(50) NOT NULL,
 `teamID` int(11) NOT NULL,
+CONSTRAINT UC_athletes UNIQUE (`firstName`, `lastName`),
 PRIMARY KEY(`ID`),
 FOREIGN KEY (`teamID`)
 		REFERENCES `teams`(`ID`) ON DELETE CASCADE
@@ -97,6 +98,7 @@ CREATE TABLE `events`(
 `goldWinner` int(11) NOT NULL,
 `goldTime` TIME,
 `gamesID` int(11) NOT NULL,
+UNIQUE(`name`),
 PRIMARY KEY(`ID`),
 FOREIGN KEY (`gamesID`)
 		REFERENCES `alien_games` (`ID`) ON DELETE CASCADE,
@@ -113,7 +115,7 @@ INSERT INTO `events` VALUES (1, 'Summer Event 0', 4, '00:00:20', 2),
 							(2, 'Winter Event 1', 6, '00:20:01', 1),
 							(3, 'Summer Event 2', 5, '00:00:12', 2),
 							(4, 'Winter Event 2', 3, '01:15:01', 3),
-							(5, 'Summer Event 0', 1, '00:00:19', 4);
+							(5, 'Summer Event 3', 1, '00:00:19', 4);
 UNLOCK TABLES;
  
 --
@@ -124,6 +126,7 @@ UNLOCK TABLES;
 CREATE TABLE `athletes_events`(
 `athleteID` int(11) NOT NULL,
 `eventID` int(11) NOT NULL,
+CONSTRAINT UC_athletes_events UNIQUE (`athleteID`, `eventID`),
 PRIMARY KEY(`athleteID`, `eventID`),
 FOREIGN KEY (`athleteID`)
 	REFERENCES `athletes`(`ID`) ON DELETE CASCADE,
