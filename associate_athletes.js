@@ -83,14 +83,14 @@ module.exports = function(){
 	});
 	
 	router.post('/', function(req, res){
-		console.log("Dropdown cert: ", req.body.athletes)
+		console.log("Dropdown cert: ", req.body.EID)
 		var mysql = req.app.get('mysql');
 		var athletes = req.body.AID;
 		var events = req.body.events.EID;
 		for (let ID of athletes) {
 			console.log("Processing athleteID " + ID)
 			var sql = "INSERT INTO athletes_events (athleteID, eventID) VALUES (?, ?)";
-			var inserts = [athletes, events]
+			var inserts = [ID, events]
 			sql = mysql.pool.query(sql, inserts, function(error, results, fields){
 				if(error){
 					console.log(error);
