@@ -58,9 +58,10 @@ module.exports = function(){
 		//context.jsscripts = ["filterByGames.js"];
 		var mysql = req.app.get('mysql');
 		getEventsDropdown(res, mysql, context, complete);
+		getEventsAndAthletes(res, mysql, context, complete);
 		function complete(){
 			callbackCount++;
-			if(callbackCount >=1){
+			if(callbackCount >=2){
 				res.render('associate_athletes', context);
 			}
 		}
@@ -73,9 +74,10 @@ module.exports = function(){
 		var mysql = req.app.get('mysql');
 		getEventsDropdown(res, mysql, context, complete);
 		getAthletesByGames(req, res, mysql, context, complete);
+		getEventsAndAthletes(res, mysql, context, complete);
 		function complete(){
 			callbackCount++;
-			if(callbackCount >=2){
+			if(callbackCount >=3){
 				res.render('associate_athletes', context)
 			}
 		}
@@ -86,7 +88,7 @@ module.exports = function(){
 		console.log("Dropdown cert: ", req.body.EID)
 		var mysql = req.app.get('mysql');
 		var athletes = req.body.AID;
-		var events = req.body.events.EID;
+		var events = req.body.EID;
 		for (let ID of athletes) {
 			console.log("Processing athleteID " + ID)
 			var sql = "INSERT INTO athletes_events (athleteID, eventID) VALUES (?, ?)";
