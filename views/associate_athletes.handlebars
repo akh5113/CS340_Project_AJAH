@@ -1,0 +1,55 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- Associate Athletes with Events Page -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Associate Athletes | Alien Games</title>
+	 <script src="/static/filterByGames.js"></script> 
+</head>
+<body>
+<div>
+<h2>Associate Athlete(s) with an Event</h2>
+	<form id="add_athlete_events" action="/associate_events" method="post">
+	Event: <select id="get_games_from_event" name='EID'>
+		{{#each events}}
+			<option value='{{ID}}'>{{Event}} {{Year}}</option>
+		{{/each}}
+		</select>
+		<input type="button" value="Submit" onclick="filterAthletesEvent()">
+	<br>
+	Athletes:<sup>Select Multiple</sup> <select multiple name='AID'>
+		{{#each athletes}}
+			<option value='{{ID}}'>{{Name}} {{Team}}</option>
+		{{/each}}
+		</select>
+	<br>
+	<input type="submit" value="Submit">
+	</form>
+</div>
+<br>
+<h3>List of Events with their Athletes</h3>
+<table>
+		<thead>
+			<th>Event</th>
+			<th>Athlete</th>
+		</thead>
+		<tbody>
+			{{#each athletes_events}}
+			<tr>
+				<td>{{CompetingEvent}}</td>
+				<td>{{Athlete}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+</table>
+
+</body>
+</html>
+	
+	

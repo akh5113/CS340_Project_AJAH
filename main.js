@@ -25,6 +25,7 @@ app.use('/add_games', require('./add_games.js'))
 app.use('/add_team', require('./add_team.js'))
 app.use('/add_event', require('./add_event.js'))
 app.use('/add_athlete', require('./add_athlete.js'))
+app.use('/associate_athletes', require('./associate_athletes.js'))
 app.use('/', express.static('public'));
 
 app.use(function(req,res){
