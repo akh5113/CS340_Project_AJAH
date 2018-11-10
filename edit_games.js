@@ -63,7 +63,7 @@ module.exports = function(){
 	router.get('/', function(req, res){
 		var callbackCount = 0;
 		var context = {};
-		//context.jsscripts = 
+		context.jsscripts = ["delete_athlete.js"];
 		var mysql = req.app.get('mysql');
 		getAllGames(res, mysql, context, complete);
 		getAllAthletes(res, mysql, context, complete);
@@ -76,6 +76,22 @@ module.exports = function(){
 			}
 		}
 	});
+
+	/*delete athlete */
+	router.delete('/:id', function(req, res){
+		var mysql = req.app.get('mysql');
+		var sql = "DELETE FROM athletes WHERE ID = ?";
+		var inserts = [req.params.ID];
+		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+			if(error){
+				res.write(JSON.stringify(error));
+				res.status(400);
+				res.end();
+			}else{
+				res.status(202).end();
+			}
+		})
+	})
 
 
 	return router;

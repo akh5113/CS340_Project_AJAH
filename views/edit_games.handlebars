@@ -68,23 +68,20 @@ Aaron Johnson
 	<!-- Alien Games -->
 	<h3 id="games_update_delete" class="queryHeader">Alien Games</h3>
 
-	<table id="games_update_delete_table">
+	<table id="games_table_all">
 		<thead>
-			<tr>
-				<th>Year</th>
-				<th>Country</th>
-				<th>City</th>
-				<th>Season</th>
-			</tr>
+			<th>Year</th>
+			<th>Season</th>
+			<th>Host Country</th>
+			<th>Host City</th>
 		</thead>
 		<tbody>
 			{{#each alien_games}}
 			<tr>
-				<td>{{year}}</td>
+				<td>{{Year}}</td>
+				<td>{{Season}}</td> 
 				<td>{{country}}</td>
 				<td>{{city}}</td>
-				<td>{{season}}</td>
-
 				<!-- <td><button onclick="deleteGames({{games.id}})">Delete</button></td> -->
 				<td><a href="update_games.html">Update</a></td>
 			</tr>
@@ -93,84 +90,83 @@ Aaron Johnson
 	</table>
 
 
-
 	<!-- Events -->
 
 	<h3 id="events_update_delete" class="queryHeader">Events</h3>
 	<!-- Table to display results of Events query -->
-	<table id="events_update_delete_table">
+	<table id="events_table_all">
 		<thead>
-			<tr>
-				<th>Event Name</th>
-				<th>Gold Winner</th> <!-- id of athlete displayed as firstName lastName -->
-				<th>Gold Winning Time</th>
-			</tr>
+			<th>Event Name</th>
+			<th>Year</th>
+			<th>Season</th>
+			<th>Gold Winner</th> <!-- id of athlete displayed as firstName lastName -->
+			<th>Gold Winning Time</th>			
 		</thead>
 		<tbody>
 			{{#each events}}
-				<tr>
-				<td>{{event.name}}</td>
-				<td>{{goldWinner}}</td> <!-- id of athlete displayed as firstName lastName -->
-				<td>{{goldTime}}</td>
-				<td><button onclick="deleteEvent({{events.id}})">Delete</button></td>
+			<tr>
+				<td>{{Event}}</td>
+				<td>{{Year}} </td>
+				<td>{{Season}}</td> <!-- gamesID used to display games year and eseason -->
+				<td>{{GoldWinner}}</td> <!-- id of athlete displayed as firstName lastName -->
+				<td>{{Time}}</td>
+				<!-- <td><button onclick="deleteEvent({{events.id}})">Delete</button></td> -->
 				<td><a href="update_event.html">Update</a></td>
-				</tr>
-			{{/each}}
 			
+			{{/each}}
 		</tbody>
 	</table>
-
 
 	<!-- Teams -->
 	<h3 id="team_update_delete" class="queryHeader">Team</h3>
 
-	<table id="teams_update_delete_table">
+	<table id="teams_table_edit">
 		<thead>
-			<tr>
-				<th>Team Name</th>
-				<th>Number of Athletes</th>
-				<th>Gold Medals Won</th>
-			</tr>
+			<th>Team Name</th>
+			<th>Year</th>
+			<th>Season</th>
+			<th>Number of Athletes</th>
+			<th>Gold Medals Won</th>
 		</thead>
 		<tbody>
-			
 			{{#each teams}}
-				<tr>
-				<td>{{teams.name}}</td>
-				<td>{{numAthletes}}</td>
-				<td>{{goldMedals}}</td>
-				<td><button onclick="deleteTeam({{teams.id}})">Delete</button></td>
+			<tr>
+				<td>{{Team}}</td>
+				<td>{{Year}} </td>
+				<td>{{Season}}</td> <!-- gamesID used to display games year and eseason -->
+				<td>{{NumAthletes}}</td>
+				<td>{{GoldMedals}}</td>
+				<!-- <td><button onclick="deleteTeam({{teams.id}})">Delete</button></td> -->
 				<td><a href="update_team.html">Update</a></td>
-				</tr>
+			</tr>
 			{{/each}}
-			
 		</tbody>
 	</table>
+
+		
 
 
 	<!-- Athletes -->
 	<h3 id="athletes_update_delete" class="queryHeader">Athletes</h3>
 	<!-- table to display results of athletes query  -->
-	<table id="athletes_table">
+	<table id="athletes_table_edit">
 		<thead>
-			<tr>
-				<th>Event Name</th>
-				<th>Athlete Name</th>
-				<th>Gold Medal Winner</th>
-			</tr>
+			<th>Athlete Name</th>
+			<th>Team</th>
+			<th>Event Name</th>
+			<th>Won Gold</th>
 		</thead>
 		<tbody>
-			
 			{{#each athletes}}
-				<tr>
-				<td>{{event.name}}</td>
-				<td>{{firstName}} {{lastName}}</td>
-				<td>{{goldWinner}}</td>
-				<td><button onclick="deleteAthlete({{athletes.id}})">Delete</button></td>
-				<td><a href="update_athlete.html">Update</a></td>
-				</tr>
+			<tr>
+				<td>{{Athlete}}</td>
+				<td>{{Team}}</td> <!-- team name derived from teamID -->
+				<td>{{CompetingEvent}}</td>
+				<td>{{WonGold}}</td>
+				<td><button onclick="deleteAthlete({{ID}})">Delete</button></td>
+				<td><a href="update_team.html">Update</a></td>
+			</tr>
 			{{/each}}
-
 		</tbody>
 	</table>
 
