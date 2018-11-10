@@ -78,7 +78,8 @@ module.exports = function(){
 	});
 
 	/*delete athlete */
-	router.delete('/:id', function(req, res){
+	/*
+	router.delete('/:ID', function(req, res){
 		var mysql = req.app.get('mysql');
 		var sql = "DELETE FROM athletes WHERE ID = ?";
 		var inserts = [req.params.ID];
@@ -92,7 +93,19 @@ module.exports = function(){
 			}
 		})
 	})
+	*/
 
+	router.get('/delete?ID=:ID', function(req, res, next){
+		var context = {};
+		var mysql = req.app.get('mysql');
+		mysql.pool.query = ("DELETE FROM athletes WHERE ID = ?", [req.query.ID], function(error, results){
+			if(error){
+				next(error);
+				return;
+			}
+			res.render('edit_games', context);
+		});
+	});
 
 	return router;
 }();
