@@ -1,6 +1,4 @@
 
-
-/*
 function deleteAthlete(ID){
 	$.ajax({
 		url: '/edit_games/' + ID,
@@ -10,8 +8,9 @@ function deleteAthlete(ID){
 		}
 	})
 };
-*/
 
+
+/*
 function deleteAthlete(ID){
 	//send a GET request to the server to delete the actual row
 	var req = new XMLHttpRequest();
@@ -19,3 +18,4 @@ function deleteAthlete(ID){
 	req.send();
 	event.preventDefault();
 };
+*/
