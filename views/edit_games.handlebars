@@ -158,14 +158,15 @@ Aaron Johnson
 			<th>Won Gold</th>
 		</thead>
 		<tbody>
+			
 			{{#each athletes}}
 			<tr>
 				<td>{{Athlete}}</td>
 				<td>{{Team}}</td> <!-- team name derived from teamID -->
 				<td>{{CompetingEvent}}</td>
 				<td>{{WonGold}}</td>
-				<td><button onclick="deleteAthlete({{ID}})">Delete</button></td>
-				<td><a href="update_team.html">Update</a></td>
+				<td><button onclick="deleteAthlete({{athletes.ID}})">Delete</button></td>
+				<td><a href="update_team.html/">Update</a></td>
 			</tr>
 			{{/each}}
 		</tbody>
