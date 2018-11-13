@@ -23,7 +23,7 @@ module.exports = function(){
 	}
 
 	function getAllAthletes(res, mysql, context, complete){
-		var sql = "SELECT CONCAT(firstName,' ', lastName) AS Athlete, events.name AS 'CompetingEvent', IF(athleteID=events.goldWinner, 'X', ' ') AS 'WonGold', teams.name AS 'Team' FROM athletes_events JOIN athletes ON athletes_events.athleteID = athletes.ID JOIN teams ON athletes.teamID = teams.ID JOIN events ON athletes_events.eventID = events.ID";
+		var sql = "SELECT CONCAT(firstName,' ', lastName) AS Athlete, events.name AS 'CompetingEvent', IF(athleteID=events.goldWinner, 'X', ' ') AS 'WonGold', teams.name AS 'Team', athleteID FROM athletes_events JOIN athletes ON athletes_events.athleteID = athletes.ID JOIN teams ON athletes.teamID = teams.ID JOIN events ON athletes_events.eventID = events.ID";
 		mysql.pool.query(sql, function(error, results, fields){
 			if(error){
 	                res.write(JSON.stringify(error));
