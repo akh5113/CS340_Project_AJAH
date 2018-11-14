@@ -12,6 +12,25 @@ Aaron Johnson
 	<title>Edit | Alien Games</title>
 
 </head>
+<style>
+	table {
+		width: 75%;
+		border-collapse: collapse;
+	}
+	thead{
+		background-color: #f2f2f2;
+		font-weight: bold;
+		border-bottom: 1px solid #ddd;
+	}
+	th, td{
+		height: 50 px;
+		text-align: left;
+		padding: 8px;
+	}
+	tr:nth-child(even){
+		background-color: #f2f2f2;
+	}
+</style>
 <body>
 	<!-- Link to hompage -->
 	<a href="/index.html">HOME</a>
@@ -75,6 +94,7 @@ Aaron Johnson
 			<th>Season</th>
 			<th>Host Country</th>
 			<th>Host City</th>
+			<th></th>
 		</thead>
 		<tbody>
 			{{#each alien_games}}
@@ -101,7 +121,8 @@ Aaron Johnson
 			<th>Year</th>
 			<th>Season</th>
 			<th>Gold Winner</th> <!-- id of athlete displayed as firstName lastName -->
-			<th>Gold Winning Time</th>			
+			<th>Gold Winning Time</th>
+			<th></th>			
 		</thead>
 		<tbody>
 			{{#each events}}
@@ -128,6 +149,7 @@ Aaron Johnson
 			<th>Season</th>
 			<th>Number of Athletes</th>
 			<th>Gold Medals Won</th>
+			<th></th>
 		</thead>
 		<tbody>
 			{{#each teams}}
@@ -156,6 +178,8 @@ Aaron Johnson
 			<th>Team</th>
 			<th>Event Name</th>
 			<th>Won Gold</th>
+			<th></th>
+			<th></th>
 		</thead>
 		<tbody>
 			
