@@ -19,7 +19,6 @@ app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 app.use('/view_games', require('./view_games.js'));
 app.use('/view_games_all', require('./view_games_all.js'))
-//WILL UNCOMMENT WHEN WORKING!
 app.use('/edit_games', require('./edit_games.js'))
 app.use('/add_games', require('./add_games.js'))
 app.use('/add_team', require('./add_team.js'))

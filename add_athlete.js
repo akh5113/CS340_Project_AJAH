@@ -47,7 +47,7 @@ module.exports = function(){
 			function complete(){
 				callbackCount++;
 				if(callbackCount >=2){
-					res.render('add_athlete', context)
+					res.render('add_athlete', context);
 				}
 			}
 		});
@@ -56,18 +56,18 @@ module.exports = function(){
 	/* Add an athlete */
 	
 	router.post('/', function(req, res){
-		console.log(req.body.teams)
-		console.log(req.body)
+		console.log(req.body.teams);
+		console.log(req.body);
 		var mysql = req.app.get('mysql');
 		var sql = "INSERT INTO athletes (firstName, lastName, teamID) VALUES (?, ?, ?)";
 		var inserts = [req.body.firstName, req.body.lastName, req.body.teamID];
 		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
 			if(error){
-				console.log(JSON.stringify(error))
+				console.log(JSON.stringify(error));
                 res.write(JSON.stringify(error));
                 res.end();
 			}else{
-				res.redirect('/add_athlete')
+				res.redirect('/add_athlete');
 			}
 		});
 	});
