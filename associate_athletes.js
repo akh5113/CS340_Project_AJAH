@@ -20,6 +20,21 @@ module.exports = function(){
 						  });
 	}
 	
+	//get a single, previously selected event
+	function getEvents(req, res, mysql, context, complete){
+		var query = "SELECT events.name AS 'Event', alien_games.games_year AS 'Year', events.ID FROM events JOIN alien_games ON events.gamesID = alien_games.ID WHERE events.ID = ?";
+		console.log(req.params)
+		var inserts = [req.params.eventID]
+		mysql.pool.query(query, inserts, function(error, results, fields){
+			if(error){
+	                res.write(JSON.stringify(error));
+	                res.end();
+	        }
+	        context.events = results; 
+	        complete();
+		});
+	}
+	
 /* get athletes */
     /* populate athletes dropdown*/
     //NOTE This SQL will return the ID, Name, and Team of all athletes who competed in the event selected in the previous dropdown
@@ -72,7 +87,8 @@ module.exports = function(){
 		var context = {};
 		context.jsscripts = ["filterByGames.js"];
 		var mysql = req.app.get('mysql');
-		getEventsDropdown(res, mysql, context, complete);
+		//getEventsDropdown(res, mysql, context, complete);
+		getEvents(req, res, mysql, context, complete)
 		getAthletesByGames(req, res, mysql, context, complete);
 		getEventsAndAthletes(res, mysql, context, complete);
 		function complete(){
@@ -84,24 +100,58 @@ module.exports = function(){
 
 	});
 	
+/*	
 	router.post('/', function(req, res){
 		console.log("Dropdown cert: ", req.body.EID)
+		console.log("Athlete: ", req.body.AID)
 		var mysql = req.app.get('mysql');
-		var athletes = req.body.AID;
-		var events = req.body.EID;
-		for (let ID of athletes) {
+		var athletes1 = req.body.AID
+		var events = req.body.EID
+		for (let ID of req.body.AID) {
 			console.log("Processing athleteID " + ID)
 			var sql = "INSERT INTO athletes_events (athleteID, eventID) VALUES (?, ?)";
-			var inserts = [ID, events]
+			var inserts = [ID, events];
 			sql = mysql.pool.query(sql, inserts, function(error, results, fields){
 				if(error){
-					console.log(error);
+					console.log(error)
 				}
 			});
 		}
 		res.redirect('/associate_athletes');
 	});
-		
+*/		
+
+	router.post('/', function(req, res){
+		console.log("Dropdown cert: ", req.body.EID)
+		console.log("Athlete: ", req.body.AID)
+		var mysql = req.app.get('mysql');
+		var athletes1 = req.body.AID
+		var events = req.body.EID
+		console.log(typeof athletes1);
+		if(typeof athletes1 === 'string') {
+			console.log("Processing athleteID " + athletes1)
+			var sql = "INSERT INTO athletes_events (athleteID, eventID) VALUES (?, ?)";
+			var inserts = [athletes1, events];
+			sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+				if(error){
+					console.log(error)
+				}
+			});
+		}
+		else {	
+			for (let ID of req.body.AID) {
+				console.log("Processing athleteID " + ID)
+				var sql = "INSERT INTO athletes_events (athleteID, eventID) VALUES (?, ?)";
+				var inserts = [ID, events];
+				sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+					if(error){
+						console.log(error)
+					}
+				});
+			}
+		}
+		res.redirect('/associate_athletes');
+	});
 		
 		
 		

@@ -11,11 +11,19 @@ function deleteAthlete(ID){
 
 
 function deleteTeam(ID){
-	$.ajax({
+	var r =	confirm('Are you sure you want to delete this team? Deletion of a team permanently delete ALL athletes on that team');
+	if (r==true)
+	{
+		$.ajax({
 		url: '/edit_games/team/' + ID,
 		type: 'DELETE',
 		success:function(result){
 			window.location.reload(true);
 		}
 	})
+	}
+	else
+	{
+		return;
+	}
 };

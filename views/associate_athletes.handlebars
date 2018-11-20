@@ -35,6 +35,8 @@ Aaron Johnson
 <body>
 	<!-- Link to hompage -->
 	<a href="/index.html">HOME</a>
+	<br>
+	<a href="/edit_games">BACK</a>
 <div>
 <h2>Associate Athlete(s) with an Event</h2>
 	<form id="add_athlete_events" action="/associate_athletes" method="post">
@@ -43,9 +45,10 @@ Aaron Johnson
 			<option value='{{ID}}'>{{Event}} {{Year}}</option>
 		{{/each}}
 		</select>
-		<input type="button" value="Submit" onclick="filterAthletesEvent()">
+		<input type="button" value="Filter" onclick="filterAthletesEvent()">
 	<br>
-	Athletes:<sup>Select Multiple</sup> <select multiple name='AID'>
+	<br>
+	Athletes (multi-select): <br> <select multiple name='AID'>
 		{{#each athletes}}
 			<option value='{{ID}}'>{{Name}} {{Team}}</option>
 		{{/each}}

@@ -55,7 +55,7 @@ module.exports = function(){
 	
 	// Get teams from a given games year 
 	function getTeamsByGames(req, res, mysql, context, complete){
-		var query = "SELECT teams.name AS 'Team', SUM(IF(athleteID=events.goldWinner, 1, 0)) AS 'GoldMedals', alien_games.games_year AS 'Year', IF(alien_games.season = 1, 'Summer', 'Winter') AS 'Season', SUM(IF(athletes.teamID=teams.ID, 1, 0)) AS 'NumAthletes', alien_games.games_year AS 'Year' FROM athletes_events JOIN athletes ON athletes_events.athleteID = athletes.ID JOIN events ON athletes_events.eventID = events.ID JOIN teams ON athletes.teamID = teams.ID JOIN alien_games ON teams.gamesID = alien_games.ID WHERE events.gamesID = ? GROUP BY teams.name";
+		var query = "SELECT teams.name AS 'Team', SUM(IF(athleteID=events.goldWinner, 1, 0)) AS 'GoldMedals', alien_games.games_year AS 'Year', IF(alien_games.season = 1, 'Summer', 'Winter') AS 'Season', SUM(IF(athletes.teamID=teams.ID, 1, 0)) AS 'NumAthletes', alien_games.games_year AS 'Year' FROM athletes_events RIGHT JOIN athletes ON athletes_events.athleteID = athletes.ID LEFT JOIN events ON athletes_events.eventID = events.ID RIGHT JOIN teams ON athletes.teamID = teams.ID LEFT JOIN alien_games ON teams.gamesID = alien_games.ID WHERE events.gamesID = ? GROUP BY teams.name";
 		console.log(req.params)
 		var inserts = [req.params.gamesID]
 		mysql.pool.query(query, inserts, function(error, results, fields){
