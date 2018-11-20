@@ -55,7 +55,7 @@ module.exports = function(){
 	
 	// Get teams from a given games year 
 	function getTeamsByGames(req, res, mysql, context, complete){
-		var query = "SELECT teams.name AS 'Team', SUM(IF(athleteID=events.goldWinner, 1, 0)) AS 'GoldMedals', alien_games.games_year AS 'Year', IF(alien_games.season = 1, 'Summer', 'Winter') AS 'Season', SUM(IF(athletes.teamID=teams.ID, 1, 0)) AS 'NumAthletes', alien_games.games_year AS 'Year' FROM athletes_events RIGHT JOIN athletes ON athletes_events.athleteID = athletes.ID LEFT JOIN events ON athletes_events.eventID = events.ID RIGHT JOIN teams ON athletes.teamID = teams.ID LEFT JOIN alien_games ON teams.gamesID = alien_games.ID WHERE events.gamesID = ? GROUP BY teams.name";
+		var query = "SELECT athletes.teamID, teams.name AS 'Team', SUM(IF(athleteID=events.goldWinner, 1, 0)) AS 'GoldMedals', alien_games.games_year AS 'Year', IF(alien_games.season = 1, 'Summer', 'Winter') AS 'Season', alien_games.games_year AS 'Year', NumAthletes FROM athletes_events AS t1 RIGHT JOIN athletes ON t1.athleteID = athletes.ID LEFT JOIN events ON t1.eventID = events.ID RIGHT JOIN teams ON athletes.teamID = teams.ID LEFT JOIN alien_games ON teams.gamesID = alien_games.ID JOIN (SELECT teams.ID AS teamID, COUNT(athletes.teamID) AS NumAthletes FROM athletes JOIN teams ON athletes.teamID = teams.ID GROUP BY teams.name) AS t2 ON athletes.teamID = t2.teamID WHERE alien_games.ID = ? GROUP BY teams.name";
 		console.log(req.params)
 		var inserts = [req.params.gamesID]
 		mysql.pool.query(query, inserts, function(error, results, fields){
