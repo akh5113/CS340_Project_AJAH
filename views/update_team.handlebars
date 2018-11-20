@@ -1,0 +1,43 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- Update Team Page -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update Team | Alien Games</title>
+</head>
+<body>
+	<!-- Link to hompage -->
+	<a href="/index.html">HOME</a>
+	
+	<!-- Header -->
+	<h1 class="pageHeader">Update Team</h1>
+	<h2>{{teams.name}}</h2>
+
+	<form id="update_team" action="/teams" method="post">
+
+		<!-- No need to add number of athletes or number of gold winning athletes as
+			those are derived attributes -->
+
+		<label>Team Name:
+			<input type="text" name="teams_name" value="{{teams.name}}">
+		</label>
+		<br>
+
+		<label>Alien Games:
+			<select name="alien_games.id">
+				<option value="{{alien_games.id}}">{{games_year}}{{season}}</option>
+			</select>
+		</label>
+		<br>
+
+		<input type="submit" value="Update">
+	</form>
+
+</body>
+</html>

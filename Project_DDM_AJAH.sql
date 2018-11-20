@@ -24,7 +24,7 @@ SELECT teams.name, SUM(IF(athleteID=events.goldWinner, 1, 0)) AS "Gold Medals", 
         JOIN alien_games ON teams.gamesID = alien_games.ID
     WHERE gamesID = :gamesID_Selected_From_Dropdown
     GROUP BY teams.name
-	
+
 -- Gets the event names and their winners for a specific alien games
 -- that was previously selected by the user
 SELECT name AS 'Event Name', CONCAT(firstName, ' ', lastName) AS 'Winner'

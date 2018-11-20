@@ -1,0 +1,60 @@
+<!-- 
+CS 340 
+Anne Harris
+Aaron Johnson
+-->
+
+<!-- View Alien Games Homepage -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update | Alien Games</title>
+</head>
+<body>
+	<!-- Link to hompage -->
+	<a href="/index.html">HOME</a>
+	
+	<!-- Welcome Statement -->
+	<h1 class="pageHeader">Alien Games Information</h1>
+
+
+	<!-- Update Alien Games Info -->
+	<h3 id="update_alien_games" class="queryHeader">{{alien_games.Year}} {{alien_games.season}}</h3>
+	<!-- Table to display results of Events query -->
+	<form id="update_games" action="/add_games" method="post">
+
+		<label>Year:
+			<input type="text" name="games_year" value="{{alien_games.games_year}}">
+		</label>
+		<br>
+
+		<label>Season:
+			<!-- Need to fix -->
+			<select name="season">
+				<option value="1">Summer</option>
+				<option value="0">Winter</option>
+			</select>
+		</label>
+		<br>
+
+		<label>Country:
+			<input type="text" name="country" value={{alien_games.country}}>
+		</label>
+		<br>
+
+		<label>City:
+			<input type="text" name="city" value={{alien_games.city}}>
+		</label>
+		<br>
+
+		<input type="submit" value="Submit">
+	</form>
+	
+
+
+
+
+
+</body>
+</html>

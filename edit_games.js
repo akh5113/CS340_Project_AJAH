@@ -47,7 +47,7 @@ module.exports = function(){
 	}
 
 	function getAllTeams(res, mysql, context, complete){
-		var sql = "SELECT teams.name AS 'Team', SUM(IF(athleteID=events.goldWinner, 1, 0)) AS 'GoldMedals', alien_games.games_year AS 'Year', IF(alien_games.season = 1, 'Summer', 'Winter') AS 'Season', SUM(IF(athletes.teamID=teams.ID, 1, 0)) AS 'NumAthletes', alien_games.games_year AS 'Year' FROM athletes_events JOIN athletes ON athletes_events.athleteID = athletes.ID JOIN events ON athletes_events.eventID = events.ID JOIN teams ON athletes.teamID = teams.ID JOIN alien_games ON teams.gamesID = alien_games.ID GROUP BY teams.name";
+		var sql = "SELECT teams.ID AS ID, teams.name AS 'Team', SUM(IF(athleteID=events.goldWinner, 1, 0)) AS 'GoldMedals', alien_games.games_year AS 'Year', IF(alien_games.season = 1, 'Summer', 'Winter') AS 'Season', SUM(IF(athletes.teamID=teams.ID, 1, 0)) AS 'NumAthletes', alien_games.games_year AS 'Year' FROM athletes_events JOIN athletes ON athletes_events.athleteID = athletes.ID JOIN events ON athletes_events.eventID = events.ID JOIN teams ON athletes.teamID = teams.ID JOIN alien_games ON teams.gamesID = alien_games.ID GROUP BY teams.name";
 		mysql.pool.query(sql, function(error, results, fields){
 			if(error){
 	                res.write(JSON.stringify(error));
@@ -79,7 +79,7 @@ module.exports = function(){
 
 	/*delete athlete */
 	
-	router.delete('/:ID', function(req, res){
+	router.delete('/athlete/:ID', function(req, res){
 		var mysql = req.app.get('mysql');
 		var sql = "DELETE FROM athletes WHERE ID = ?";
 		var inserts = [req.params.ID];
@@ -93,19 +93,26 @@ module.exports = function(){
 			}
 		})
 	})
+
+	/* delete team */
 	
-/*
-	router.get('/delete?ID=:ID', function(req, res, next){
-		var context = {};
+	router.delete('/team/:ID', function(req, res){
 		var mysql = req.app.get('mysql');
-		mysql.pool.query = ("DELETE FROM athletes WHERE ID = ?", [req.query.ID], function(error, results){
+		var sql = "DELETE FROM teams WHERE ID = ?";
+		var inserts = [req.params.ID];
+		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
 			if(error){
-				next(error);
-				return;
+				res.write(JSON.stringify(error));
+				res.status(400);
+				res.end();
+			}else{
+				res.status(202).end();
 			}
-			res.render('edit_games', context);
-		});
-	});*/
+		})
+	})
+
+	/* update athlete */
+	
 
 	return router;
 }();

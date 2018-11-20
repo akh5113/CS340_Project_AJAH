@@ -1,7 +1,7 @@
 
 function deleteAthlete(ID){
 	$.ajax({
-		url: '/edit_games/' + ID,
+		url: '/edit_games/athlete/' + ID,
 		type: 'DELETE',
 		success:function(result){
 			window.location.reload(true);
@@ -10,12 +10,12 @@ function deleteAthlete(ID){
 };
 
 
-/*
-function deleteAthlete(ID){
-	//send a GET request to the server to delete the actual row
-	var req = new XMLHttpRequest();
-	req.open("GET", "/delete?" +"id=", ID, true);
-	req.send();
-	event.preventDefault();
+function deleteTeam(ID){
+	$.ajax({
+		url: '/edit_games/team/' + ID,
+		type: 'DELETE',
+		success:function(result){
+			window.location.reload(true);
+		}
+	})
 };
-*/
