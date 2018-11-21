@@ -1,8 +1,8 @@
 function updateAlienGames(ID){
     $.ajax({
-        url: '/alien_games/' + id,
+        url: '/edit_games/' + ID,
         type: 'PUT',
-        data: $('#update-alien_games').serialize(),
+        data: $('#update_alien_games').serialize(),
         success: function(result){
             window.location.replace("./");
         }

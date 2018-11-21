@@ -59,7 +59,7 @@ SELECT athletes.ID AS 'ID', CONCAT(firstName,' ', lastName) AS 'Name', teams.nam
 
 -- ALL ALIEN GAMES
 -- Selects all Alien Games entries
-SELECT games_year AS Year, country, city, IF(season = 1, 'Summer', 'Winter') AS Season FROM alien_games 
+SELECT ID, games_year AS Year, country, city, IF(season = 1, 'Summer', 'Winter') AS Season FROM alien_games
 
 -- ALL EVENTS
 -- Shows all the events for every game and the year the event was in

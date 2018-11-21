@@ -11,7 +11,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getAllGames(res, mysql, context, complete){
-		var sql = "SELECT games_year AS Year, country, city, IF(season = 1, 'Summer', 'Winter') AS Season FROM alien_games";
+		var sql = "SELECT ID, games_year AS Year, country, city, IF(season = 1, 'Summer', 'Winter') AS Season FROM alien_games";
 		mysql.pool.query(sql, function(error, results, fields){
 			if(error){
 	                res.write(JSON.stringify(error));
@@ -111,8 +111,51 @@ module.exports = function(){
 		})
 	})
 
+	/*select one Alien Games*/
+	function getGames(res, mysql, context, id, complete){
+		var sql = "SELECT ID, games_year AS 'Year', IF(season = 1, 'Summer', 'Winter') AS 'Season' FROM alien_games WHERE ID = ?";
+		var inserts = ["ID"];
+		mysql.pool.query(sql, inserts, function(error, results, fields){
+			if(error){
+				res.write(JSON.stringify(error));
+				res.end();
+			}
+			context.alien_games = results[0];
+			complete();
+		})
+	}
+
+	/*display one Alien Game for the specific purposes of updating people*/
+	router.get('/:ID', function(req, res){
+		callbackCount = 0;
+		var context = {};
+		context.jsscripts = ["update_games.js"];
+		var mysql = req.app.get('mysql');
+		getGames(res, mysql, context, req.params.ID, complete);
+		function complete(){
+			callbackCount++;
+			if(callbackCount >= 1){
+				res.render('update_alien_games', context);
+			}
+		}
+	});
+
 	/* update athlete */
-	
+	router.put(':ID', function(req,res){
+		var mysql = req.app.get('mysql');
+		var sql = "UPDATE alien_games SET  games_year = ?, season = ?, country = ?,city = ? WHERE ID = ?";
+		var inserts = [req.body.games_year, req.body.season, req.body.country, req.body.city, req.params.ID];
+		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+			if(error){
+				console.log(error)
+				res.write(JSON.stringify(error));
+				res.end();
+			}else{
+				res.status(200);
+				res.end();
+			}
+		});
+	});
 
 	return router;
 }();

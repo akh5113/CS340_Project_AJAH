@@ -22,7 +22,7 @@ Aaron Johnson
 	<!-- Update Alien Games Info -->
 	<h3 id="update_alien_games" class="queryHeader">{{alien_games.Year}} {{alien_games.season}}</h3>
 	<!-- Table to display results of Events query -->
-	<form id="update_games" action="/add_games" method="post">
+	<form id="update_alien_games" action="/edit_games" method="post">
 
 		<label>Year:
 			<input type="text" name="games_year" value="{{alien_games.games_year}}">
@@ -47,12 +47,9 @@ Aaron Johnson
 			<input type="text" name="city" value={{alien_games.city}}>
 		</label>
 		<br>
-
-		<input type="submit" value="Submit">
 	</form>
 	
-
-
+	<button onclick="updateAlienGames({{alien_games.ID}})">Update</button>
 
 
 
