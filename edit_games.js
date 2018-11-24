@@ -112,9 +112,9 @@ module.exports = function(){
 	})
 
 	/*select one Alien Games*/
-	function getGames(res, mysql, context, id, complete){
-		var sql = "SELECT ID, games_year AS 'Year', IF(season = 1, 'Summer', 'Winter') AS 'Season' FROM alien_games WHERE ID = ?";
-		var inserts = ["ID"];
+	function getGames(res, mysql, context, ID, complete){
+		var sql = "SELECT ID, games_year AS 'Year', IF(season = 1, 'Summer', 'Winter') AS 'Season', country, city FROM alien_games WHERE ID = ?";
+		var inserts = [ID];
 		mysql.pool.query(sql, inserts, function(error, results, fields){
 			if(error){
 				res.write(JSON.stringify(error));
@@ -143,7 +143,7 @@ module.exports = function(){
 	/* update athlete */
 	router.put(':ID', function(req,res){
 		var mysql = req.app.get('mysql');
-		var sql = "UPDATE alien_games SET  games_year = ?, season = ?, country = ?,city = ? WHERE ID = ?";
+		var sql = "UPDATE alien_games SET games_year = ?, season = ?, country = ?, city = ? WHERE ID = ?";
 		var inserts = [req.body.games_year, req.body.season, req.body.country, req.body.city, req.params.ID];
 		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
 			if(error){

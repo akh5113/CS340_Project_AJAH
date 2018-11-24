@@ -20,18 +20,18 @@ Aaron Johnson
 
 
 	<!-- Update Alien Games Info -->
-	<h3 id="update_alien_games" class="queryHeader">{{alien_games.Year}} {{alien_games.season}}</h3>
+	<h3 id="update_alien_games" class="queryHeader">{{alien_games.Year}} {{alien_games.Season}}</h3>
 	<!-- Table to display results of Events query -->
 	<form id="update_alien_games" action="/edit_games" method="post">
 
 		<label>Year:
-			<input type="text" name="games_year" value="{{alien_games.games_year}}">
+			<input type="text" name="Year" value="{{alien_games.Year}}">
 		</label>
 		<br>
 
 		<label>Season:
 			<!-- Need to fix -->
-			<select name="season">
+			<select name="Season">
 				<option value="1">Summer</option>
 				<option value="0">Winter</option>
 			</select>
