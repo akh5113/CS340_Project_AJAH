@@ -121,6 +121,7 @@ module.exports = function(){
 				res.end();
 			}
 			context.alien_games = results[0];
+			//console.log(context.alien_games);
 			complete();
 		})
 	}
@@ -128,10 +129,12 @@ module.exports = function(){
 	/*display one Alien Game for the specific purposes of updating people*/
 	router.get('/:ID', function(req, res){
 		callbackCount = 0;
+		console.log(req.body);
 		var context = {};
 		context.jsscripts = ["update_games.js"];
 		var mysql = req.app.get('mysql');
 		getGames(res, mysql, context, req.params.ID, complete);
+	//	console.log(req.params);
 		function complete(){
 			callbackCount++;
 			if(callbackCount >= 1){
@@ -141,8 +144,9 @@ module.exports = function(){
 	});
 
 	/* update athlete */
-	router.put(':ID', function(req,res){
+	router.put('/:ID', function(req, res){
 		var mysql = req.app.get('mysql');
+		console.log(req.body);
 		var sql = "UPDATE alien_games SET games_year = ?, season = ?, country = ?, city = ? WHERE ID = ?";
 		var inserts = [req.body.games_year, req.body.season, req.body.country, req.body.city, req.params.ID];
 		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
