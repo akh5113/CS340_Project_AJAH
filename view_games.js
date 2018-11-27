@@ -95,6 +95,7 @@ module.exports = function(){
 		var mysql = req.app.get('mysql');
 		getAthletesByGames(req, res, mysql, context, complete);
 		getGamesDropdown(res, mysql, context, complete);	
+		console.log(req);
 		function complete(){
 			callbackCount++;
 			if(callbackCount >=2){

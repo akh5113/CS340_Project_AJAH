@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
+
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -27,6 +28,7 @@ app.use('/add_event', require('./add_event.js'))
 app.use('/add_athlete', require('./add_athlete.js'))
 app.use('/associate_athletes', require('./associate_athletes.js'))
 app.use('/', express.static('public'));
+
 
 app.use(function(req,res){
   res.status(404);
