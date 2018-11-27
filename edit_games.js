@@ -146,12 +146,12 @@ module.exports = function(){
 	/* update athlete */
 	router.put('/:ID', function(req, res){
 		var mysql = req.app.get('mysql');
-		console.log(req.body);
-		var sql = "UPDATE alien_games SET games_year = ?, season = ?, country = ?, city = ? WHERE ID = ?";
+		console.log(req.body.games_year, req.body.season);
+		var sql = "UPDATE alien_games SET games_year=?, season=?, country=?, city=? WHERE ID=?";
 		var inserts = [req.body.games_year, req.body.season, req.body.country, req.body.city, req.params.ID];
 		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
 			if(error){
-				console.log(error)
+				console.log(error);
 				res.write(JSON.stringify(error));
 				res.end();
 			}else{
