@@ -99,27 +99,7 @@ module.exports = function(){
 		}
 
 	});
-	
-/*	
-	router.post('/', function(req, res){
-		console.log("Dropdown cert: ", req.body.EID)
-		console.log("Athlete: ", req.body.AID)
-		var mysql = req.app.get('mysql');
-		var athletes1 = req.body.AID
-		var events = req.body.EID
-		for (let ID of req.body.AID) {
-			console.log("Processing athleteID " + ID)
-			var sql = "INSERT INTO athletes_events (athleteID, eventID) VALUES (?, ?)";
-			var inserts = [ID, events];
-			sql = mysql.pool.query(sql, inserts, function(error, results, fields){
-				if(error){
-					console.log(error)
-				}
-			});
-		}
-		res.redirect('/associate_athletes');
-	});
-*/		
+		
 
 	router.post('/', function(req, res){
 		console.log("Dropdown cert: ", req.body.EID)

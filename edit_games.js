@@ -4,7 +4,6 @@ Anne Harris
 Aaron Johnson
 *********************/
 
-//THE SAME AS VIEW_GAMES_ALL.JS???
 
 module.exports = function(){
     var express = require('express');
