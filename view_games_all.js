@@ -61,6 +61,7 @@ module.exports = function(){
 	router.get('/', function(req, res){
 		var callbackCount = 0;
 		var context = {};
+		//context.jsscripts = 
 		var mysql = req.app.get('mysql');
 		getAllGames(res, mysql, context, complete);
 		getAllAthletes(res, mysql, context, complete);
