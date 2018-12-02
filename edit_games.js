@@ -133,7 +133,7 @@ module.exports = function(){
 		context.jsscripts = ["update_games.js"];
 		var mysql = req.app.get('mysql');
 		getGames(res, mysql, context, req.params.ID, complete);
-	//	console.log(req.params);
+		console.log(req.params);
 		function complete(){
 			callbackCount++;
 			if(callbackCount >= 1){
