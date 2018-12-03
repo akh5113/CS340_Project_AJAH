@@ -11,6 +11,10 @@ Aaron Johnson
 	<title>View All | Alien Games</title>
 </head>
 <style>
+	body {
+	background-color: LightGrey;
+	}
+	
 	table {
 		width: 75%;
 		border-collapse: collapse;
@@ -31,6 +35,7 @@ Aaron Johnson
 	}
 </style>
 <body>
+	<center>
 	<!-- Link to hompage -->
 	<a href="/index.html">HOME</a>
 	
@@ -40,7 +45,7 @@ Aaron Johnson
 	<p><b>Note:</b> Empty teams/events are not shown in the main page (because an empty team or event can't occur)</p>
 
 	<div>
-		<h3 id="all_games" class="queryHeader">All Alien Games</h3>
+		<h3 id="all_games" class="queryHeader"><u>All Alien Games</u></h3>
 		<table id="games_table_all">
 			<thead>
 				<th>Year</th>
@@ -62,7 +67,7 @@ Aaron Johnson
 	</div>
 
 	<!-- The Events Results displays the event names and their winners, also the alien games participated in -->
-	<h3 id="all_events" class="queryHeader">All Events</h3>
+	<h3 id="all_events" class="queryHeader"><u>All Events</u></h3>
 	<!-- Table to display results of Events query -->
 	<table id="events_table_all">
 		<thead>
@@ -86,7 +91,7 @@ Aaron Johnson
 	</table>
 
 	<!-- The Team Results displays the team name, number of athletes, and the alien games participated in-->
-	<h3 id="all_teams" class="queryHeader">All Teams</h3>
+	<h3 id="all_teams" class="queryHeader"><u>All Teams</u></h3>
 	<!-- table to display results of Teams query  -->
 	<table id="teams_table_all">
 		<thead>
@@ -111,7 +116,7 @@ Aaron Johnson
 
 	<!-- The Athlete Results displays the name of the athletes and the name of the events that 
 		they participated in. Shows an X if they won the event and nothing if not-->
-	<h3 id="all_athletes" class="queryHeader">All Athletes + Events</h3>
+	<h3 id="all_athletes" class="queryHeader"><u>All Athletes + Events</u></h3>
 		<!-- table to display results of athletes query  -->
 	<table id="athletes_table_all">
 		<thead>
@@ -131,6 +136,7 @@ Aaron Johnson
 			{{/each}}
 		</tbody>
 	</table>
+	</center>
 
 </body>
 </html>

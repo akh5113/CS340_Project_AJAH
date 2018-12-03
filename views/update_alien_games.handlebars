@@ -11,6 +11,23 @@ Aaron Johnson
 <head>
 	<title>Update | Alien Games</title>
 	<script src="update_games.js"></script>
+<style>
+	body {
+		background-color: LightGrey;
+		}
+		.button {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+	padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12x;
+    margin: 4px 2px;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<!-- Link to hompage -->
@@ -53,7 +70,7 @@ Aaron Johnson
 		<br>
 	</form>
 	
-	<button onclick="updateAlienGames({{alien_games.ID}})">Update</button>
+	<button onclick="updateAlienGames({{alien_games.ID}})" class="button">Update</button>
 
 
 

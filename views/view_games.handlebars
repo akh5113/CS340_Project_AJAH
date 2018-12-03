@@ -12,6 +12,10 @@ Aaron Johnson
 	<title>View | Alien Games</title>
 </head>
 <style>
+	body {
+	background-color: LightGrey;
+	}
+
 	table {
 		width: 75%;
 		border-collapse: collapse;
@@ -30,8 +34,51 @@ Aaron Johnson
 	tr:nth-child(even){
 		background-color: #f2f2f2;
 	}
+	
+/* myButton css from https://www.bestcssbuttongenerator.com/ */
+	
+.myButton {
+	-moz-box-shadow:inset 0px 1px 4px -30px #121212;
+	-webkit-box-shadow:inset 0px 1px 4px -30px #121212;
+	box-shadow:inset 0px 1px 4px -30px #121212;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c6e6d), color-stop(1, #7d8080));
+	background:-moz-linear-gradient(top, #6c6e6d 5%, #7d8080 100%);
+	background:-webkit-linear-gradient(top, #6c6e6d 5%, #7d8080 100%);
+	background:-o-linear-gradient(top, #6c6e6d 5%, #7d8080 100%);
+	background:-ms-linear-gradient(top, #6c6e6d 5%, #7d8080 100%);
+	background:linear-gradient(to bottom, #6c6e6d 5%, #7d8080 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c6e6d', endColorstr='#7d8080',GradientType=0);
+	background-color:#6c6e6d;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:3px 16px;
+	text-decoration:none;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7d8080), color-stop(1, #6c6e6d));
+	background:-moz-linear-gradient(top, #7d8080 5%, #6c6e6d 100%);
+	background:-webkit-linear-gradient(top, #7d8080 5%, #6c6e6d 100%);
+	background:-o-linear-gradient(top, #7d8080 5%, #6c6e6d 100%);
+	background:-ms-linear-gradient(top, #7d8080 5%, #6c6e6d 100%);
+	background:linear-gradient(to bottom, #7d8080 5%, #6c6e6d 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d8080', endColorstr='#6c6e6d',GradientType=0);
+	background-color:#7d8080;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+	
 </style>
 <body>
+
+	<center>
 	<!-- Link to hompage -->
 	<a href="/index.html">HOME</a>
 	
@@ -40,19 +87,18 @@ Aaron Johnson
 
 	<!-- Select Game -->
 	<div>
-		<h3 class="queryHeader">Select A Game</h3>
-		<p>Then choose to view the teams, events, or athletes who competed in that game:</p>
+		<p class="queryHeader"><b>Select A Game,</b> then choose to view the teams, events, or athletes who competed in that game:</p>
 		<!-- Get Form for selecting a Game -->
 		<form id="alien_games_select" action="" method="">
-			Games: 
+			<b>Games:</b> 
 			<select id="alien_games_filter" name="alienGames">
 				{{#each alien_games}}
 				<option value="{{ID}}"> {{Year}} {{Season}}</option>
 				{{/each}}
 			</select><br>
-			<input type="button" value="View Teams" onclick="filterTeamsByGames()">
-			<input type="button" value="View Events" onclick="filterEventsByGames()">
-			<input type="button" value="View Athletes" onclick="filterAthletesByGames()">
+			<input type="button" class ="myButton" value="View Teams" onclick="filterTeamsByGames()">
+			<input type="button" class ="myButton" value="View Events" onclick="filterEventsByGames()">
+			<input type="button" class ="myButton" value="View Athletes" onclick="filterAthletesByGames()">
 		</form>
 	</div>
 	
@@ -137,6 +183,7 @@ Aaron Johnson
 		</tbody>
 	</table>
 	{{/if}}
+	</center>
 
 </body>
 </html>

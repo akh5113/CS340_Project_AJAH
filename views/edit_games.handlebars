@@ -10,9 +10,11 @@ Aaron Johnson
 <html>
 <head>
 	<title>Edit | Alien Games</title>
-
-</head>
 <style>
+	body {
+		background-color: LightGrey;
+	}
+
 	table {
 		width: 75%;
 		border-collapse: collapse;
@@ -31,8 +33,56 @@ Aaron Johnson
 	tr:nth-child(even){
 		background-color: #f2f2f2;
 	}
+
+	/* myButton css from https://www.bestcssbuttongenerator.com/ */
+	
+.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #cf866c;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #cf866c;
+	box-shadow:inset 0px 1px 0px 0px #cf866c;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d0451b), color-stop(1, #bc3315));
+	background:-moz-linear-gradient(top, #d0451b 5%, #bc3315 100%);
+	background:-webkit-linear-gradient(top, #d0451b 5%, #bc3315 100%);
+	background:-o-linear-gradient(top, #d0451b 5%, #bc3315 100%);
+	background:-ms-linear-gradient(top, #d0451b 5%, #bc3315 100%);
+	background:linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d0451b', endColorstr='#bc3315',GradientType=0);
+	background-color:#d0451b;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #942911;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #854629;
+	margin-bottom: 7px;
+}
+
+
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bc3315), color-stop(1, #d0451b));
+	background:-moz-linear-gradient(top, #bc3315 5%, #d0451b 100%);
+	background:-webkit-linear-gradient(top, #bc3315 5%, #d0451b 100%);
+	background:-o-linear-gradient(top, #bc3315 5%, #d0451b 100%);
+	background:-ms-linear-gradient(top, #bc3315 5%, #d0451b 100%);
+	background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bc3315', endColorstr='#d0451b',GradientType=0);
+	background-color:#bc3315;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
 </style>
+</head>
+
 <body>
+<center>
 	<!-- Link to hompage -->
 	<a href="/index.html">HOME</a>
 	
@@ -41,30 +91,29 @@ Aaron Johnson
 
 	<!-- ADD -->
 	<!-- Buttons to link to page to add Games, Events, Athletes, Teams -->
-	<h3>Add Information</h3>
 	<!-- Add Alien Games -->
 	<form action="add_games">
-	    <input type="submit" value="Add Alien Game" />
+	    <input type="submit" class="myButton" value="Add Alien Game" />
 	</form>
 
 	<!-- Add Event -->
 	<form action="add_event">
-	    <input type="submit" value="Add Event" />
+	    <input type="submit" class="myButton" value="Add Event" />
 	</form>
 
 	<!-- Add Team -->
 	<form action="add_team">
-	    <input type="submit" value="Add Team" />
+	    <input type="submit" class="myButton" value="Add Team" />
 	</form>
 
 	<!-- Add Athlete -->
 	<form action="add_athlete">
-	    <input type="submit" value="Add Athlete" />
+	    <input type="submit" class="myButton" value="Add Athlete" />
 	</form>
 
 	<!--Associate Athlets With Events-->
 	<form action="associate_athletes">
-		<input type="submit" value="Associate Athletes">
+		<input type="submit" class="myButton" value="Associate Athletes">
 	</form>
 
 	
@@ -73,7 +122,7 @@ Aaron Johnson
 
 
 	<!-- Alien Games -->
-	<h3 id="games_update_delete" class="queryHeader">Alien Games</h3>
+	<h3 id="games_update_delete" class="queryHeader"><u>Alien Games</u></h3>
 
 	<table id="games_table_all">
 		<thead>
@@ -100,7 +149,7 @@ Aaron Johnson
 
 	<!-- Events -->
 
-	<h3 id="events_update_delete" class="queryHeader">Events</h3>
+	<h3 id="events_update_delete" class="queryHeader"><u>Events</u></h3>
 	<!-- Table to display results of Events query -->
 	<table id="events_table_all">
 		<thead>
@@ -126,7 +175,7 @@ Aaron Johnson
 	</table>
 
 	<!-- Teams -->
-	<h3 id="team_update_delete" class="queryHeader">Team</h3>
+	<h3 id="team_update_delete" class="queryHeader"><u>Team</u></h3>
 	<table id="teams_table_edit">
 		<thead>
 			<th>Team Name</th>
@@ -144,15 +193,14 @@ Aaron Johnson
 				<td>{{Season}}</td> <!-- gamesID used to display games year and eseason -->
 				<td>{{NumAthletes}}</td>
 				<td>{{GoldMedals}}</td>
-				<td><button onclick="deleteTeam({{teamID}})">Delete</button></td> -->
-				<!-- <td><a href="update_team.html">Update</a></td> -->
+				<td><button onclick="deleteTeam({{teamID}})" class="myButton" >Delete</button></td>
 			</tr>
 			{{/each}}
 		</tbody>
 	</table>
 
 	<!-- Athletes -->
-	<h3 id="athletes_update_delete" class="queryHeader">Athletes</h3>
+	<h3 id="athletes_update_delete" class="queryHeader"><u>Athletes</u></h3>
 	<!-- table to display results of athletes query  -->
 	<table id="athletes_table_edit">
 		<thead>
@@ -170,13 +218,13 @@ Aaron Johnson
 				<td>{{Team}}</td> <!-- team name derived from teamID -->
 				<td>{{CompetingEvent}}</td>
 				<td>{{WonGold}}</td>
-				<td><button onclick="deleteAthlete({{athleteID}})">Delete</button></td>
+				<td><button onclick="deleteAthlete({{athleteID}})" class="myButton">Delete</button></td>
 				<!-- <td><a href="update_team.html/">Update</a></td> -->
 			</tr>
 			{{/each}}
 		</tbody>
 	</table>
-
+</center>
 
 </body>
 </html>

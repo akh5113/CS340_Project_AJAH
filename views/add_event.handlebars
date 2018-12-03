@@ -11,7 +11,23 @@ Aaron Johnson
 <head>
 	<title>Add Event | Alien Games</title>
 	<script src="/static/filterByGames.js"></script>
-
+<style>
+	body {
+		background-color: LightGrey;
+		}
+		.button {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+	padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12x;
+    margin: 4px 2px;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<!-- Link to hompage -->
@@ -33,7 +49,7 @@ Aaron Johnson
 					<option value="{{ID}}">{{Year}} {{Season}}</option>
 				{{/each}}
 			</select>
-		<input type="button" value="Submit" onclick="filterAthletesByGamesForEvent()">
+		<input type="button" value="Submit" class="button" onclick="filterAthletesByGamesForEvent()">
 		</label>
 		<br>
 		
@@ -56,7 +72,7 @@ Aaron Johnson
 			</select>
 		</label>
 		<br>
-		<input type="submit" value="Submit">
+		<input type="submit" value="Submit" class="button">
 	</form>
 		
 		{{/if}}
