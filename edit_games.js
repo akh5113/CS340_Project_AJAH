@@ -10,6 +10,8 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
+    /*Get info for each entitity */
+
     function getAllGames(res, mysql, context, complete){
 		var sql = "SELECT ID, games_year AS Year, country, city, IF(season = 1, 'Summer', 'Winter') AS Season FROM alien_games";
 		mysql.pool.query(sql, function(error, results, fields){

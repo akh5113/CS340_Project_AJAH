@@ -77,51 +77,5 @@ Aaron Johnson
 		
 		{{/if}}
 		
-	
-
-
-<!--
-	<form id="select_game" action="/add_event" method="post">
-		<label>Games:
-			<br>
-			<select name="alien_game.name">
-				{{#each events}}
-				<option value="{{eventID}}">{{name}}</option>
-				{{/each}}
-			</select>
-		</label>
-			
-		<br>
-		<input type="submit" value="Submit">
-	</form>
-
-	<form id="select_events" action="/add_event" method="post">
-		<label>Event:
-			<br>
-			<select name="athletes_events.eventID">
-				{{#each events}}
-				<option value="{{ID}}">{{name}}</option>
-				{{/each}}
-			</select>
-		</label>
-			
-		<br>
-		<input type="submit" value="Submit">
-	</form>
-
-	<form id="select_athlete" action="/add_event" method="post">
-		 auto populated with athletes that are in the teams that are participating in that years games 
-
-		<label>Athletes:
-			<br>
-			{{#each athletes_events}}
-			<input type="checkbox" name="athletes_events.athleteID" value="{{ID}}">{{Athlete}}</option> 
-			<br>
-			{{/each}}
-		</label>
-		<br>
-		<input type="submit" value="Submit">
-	</form>
-	-->
 </body>
 </html>
